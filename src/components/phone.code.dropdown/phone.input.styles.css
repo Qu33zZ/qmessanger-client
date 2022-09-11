@@ -1,0 +1,125 @@
+div.phone-input-area{
+    margin: auto;
+}
+
+button.phone-country-code-dropdown{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+
+    position: relative;
+
+    height: 45px;
+
+    margin-right: 10px;
+    padding: 0 10px;
+
+    background-color: #152033;
+
+    font-size: 18px;
+    color: white;
+
+    border: none;
+    border-radius: 4px;
+}
+
+ul.mobile-codes-menu-list{
+    display: flex;
+    flex-direction: column;
+
+    z-index: 1;
+
+    position: absolute;
+
+    left: 0;
+    top:115%;
+
+    width: fit-content;
+    height: 200px;
+
+    padding: 10px 0;
+
+    background-color: #152033;
+    border-radius: 4px;
+
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+
+ul.mobile-codes-menu-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+ul.mobile-codes-menu-list::-webkit-scrollbar-track {
+    background: rgba(21, 25, 51, 0.94);
+}
+
+ul.mobile-codes-menu-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+}
+
+
+ul.mobile-codes-menu-list li{
+    padding: 0 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+ul.mobile-codes-menu-list li:hover{
+    background-color: #252c38;
+}
+
+ul.mobile-codes-menu-list li:not(:last-child){
+    margin-bottom: 5px;
+}
+
+input.phone-input{
+    height: 45px;
+    padding: 0 10px;
+    background: #152033;
+
+    font-size: 18px;
+    color: white;
+
+    border: none;
+    border-radius: 4px;
+}
+
+
+input.phone-input::-webkit-input-placeholder {
+    color:    #fff;
+}
+input.phone-input:-moz-placeholder {
+    color:    #fff;
+    opacity:  1;
+}
+input.phone-input::-moz-placeholder {
+    color:    #fff;
+    opacity:  1;
+}
+input.phone-input:-ms-input-placeholder {
+    color:    #fff;
+}
+input.phone-input::-ms-input-placeholder {
+    color:    #fff;
+}
+
+input.phone-input::placeholder {
+    color:    #fff;
+}
+
+
+@font-face {
+    font-family: NotoColorEmojiLimited;
+    unicode-range: U+1F1E6-1F1FF;
+    src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
+}
+
+button.phone-country-code-dropdown p.country-flag{
+    font-family: NotoColorEmojiLimited;
+    font-size: 18px;
+    font-weight: 500;
+
+    margin-right: 5px;
+}
