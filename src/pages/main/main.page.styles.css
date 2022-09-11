@@ -1,0 +1,46 @@
+div.main-page{
+    position: relative;
+}
+
+h1.page-title-name{
+    display: block;
+    font-weight: 700;
+    font-size: 58px;
+
+    color: white;
+
+    text-align: center;
+    margin: 5% auto 0 auto;
+}
+
+p.description-text{
+    width: 40%;
+    text-align: center;
+
+    margin: 5% auto 0 auto;
+
+    font-size: 32px;
+    font-weight: 500;
+}
+
+img.women{
+    position: absolute;
+
+    width: 19.38vw;
+    /*height: 52.22vh;*/
+    left: 5%;
+    bottom: 15%;
+}
+
+img.boy{
+    position: absolute;
+
+    right: 5%;
+    top: 7%;
+
+    width: 14.22vw;
+    /*height: 22.87vh;*/
+
+
+
+}

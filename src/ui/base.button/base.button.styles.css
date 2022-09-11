@@ -1,0 +1,18 @@
+button.base-button{
+    display: block;
+
+    width: fit-content;
+    height: 50px;
+
+    padding: 15px 50px 15px 50px;
+
+    align-items: center;
+
+    border-radius: 30px;
+    background-color: #375FFF;
+
+    font-weight: 800;
+    font-size: 18px;
+
+    color: white;
+}
