@@ -1,0 +1,45 @@
+div.phone-confirm-code--area{
+    margin: auto;
+}
+
+div.dots-input{
+    display: inline-flex;
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+input.dot-input{
+    display: flex;
+    width: 30px;
+
+    text-align: center;
+
+    background: transparent;
+    border: none;
+
+    font-size: 32px;
+}
+
+
+input.dot-input::-webkit-input-placeholder {
+    color:#152033;
+}
+input.dot-input:-moz-placeholder {
+    color:#152033;
+    opacity:  1;
+}
+input.dot-input::-moz-placeholder {
+    color:#152033;
+    opacity:  1;
+}
+input.dot-input:-ms-input-placeholder {
+    color:#152033;
+}
+input.dot-input::-ms-input-placeholder {
+    color:#152033;
+}
+
+input.dot-input::placeholder {
+    color:#152033;
+}

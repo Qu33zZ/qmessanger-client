@@ -110,12 +110,6 @@ input.phone-input::placeholder {
 }
 
 
-@font-face {
-    font-family: NotoColorEmojiLimited;
-    unicode-range: U+1F1E6-1F1FF;
-    src: url(https://raw.githack.com/googlefonts/noto-emoji/main/fonts/NotoColorEmoji.ttf);
-}
-
 button.phone-country-code-dropdown p.country-flag{
     font-family: NotoColorEmojiLimited;
     font-size: 18px;
