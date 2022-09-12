@@ -1,4 +1,4 @@
-import React, {useState, ChangeEvent, useRef} from 'react';
+import React, {useState, useRef, CompositionEvent, useEffect, ChangeEvent, SyntheticEvent} from 'react';
 import womenSit from "../../assets/women_sit.png";
 import boySit from "../../assets/boy_sit.png";
 import BaseButton from "../../ui/base.button/base.button";
@@ -7,25 +7,33 @@ import "./phone.confirm.styles.css";
 const PhoneConfirmPage = () => {
 	const [code, setCode] = useState<string>("");
 	const inputRef = useRef<HTMLDivElement | null>(null);
-	const handleInput = (e:ChangeEvent<HTMLInputElement>) => {
+
+	useEffect(() => console.log(code), [code])
+
+	const handleInput = (e:CompositionEvent<HTMLInputElement>) => {
 		e.preventDefault();
-		setCode(prevState => `${prevState}${e.target.value}`);
-		if(!inputRef || !inputRef.current) return;
-		console.log("Next")
+		const currentInput = e.currentTarget;
+
+		if(!inputRef || !inputRef.current) return e.preventDefault();
 
 		const inputs = Array.from(inputRef.current?.children);
-		const index = inputs.indexOf(e.target);
+		const index = inputs.indexOf(e.currentTarget);
 
-		if(e.currentTarget.value.length === 1){
+		if(index >= inputs.length-1) return;
 
-			// if(index === inputs.length-1) return e.currentTarget.blur();
-			(inputs[index+1] as HTMLInputElement).focus();
-		};
-		if(e.currentTarget.value.length === 0){
-			// if(index <= 0) return e.currentTarget.blur();
-			(inputs[index-1] as HTMLInputElement).focus();
+		setCode(prevState => `${prevState}${e.nativeEvent.data}`);
+
+		if(currentInput.value.length === 0) currentInput.value += e.nativeEvent.data;
+		else if(currentInput.value.length >= 1){
+			const nextInput = inputs[index+1] as HTMLInputElement;
+			nextInput.value = e.nativeEvent.data;
+			if(index < inputs.length-1) nextInput.focus();
 		}
 
+		if(currentInput.value.length === 0){
+			setCode(prevState => `${prevState.slice(0, -1)}`);
+			if(index > 0) (inputs[index-1] as HTMLInputElement).focus();
+		};
 	};
 
 	return (
@@ -36,12 +44,12 @@ const PhoneConfirmPage = () => {
 			<img src={boySit} alt="Boy" className={"boy"}/>
 			<div className={"phone-confirm-code--area"}>
 				<div className={"dots-input"} ref={inputRef}>
-					<input placeholder={'•'} maxLength={1} className={"dot-input"} onChange={handleInput}/>
-					<input placeholder={'•'} maxLength={1} className={"dot-input"} onChange={handleInput}/>
-					<input placeholder={'•'} maxLength={1} className={"dot-input"} onChange={handleInput}/>
-					<input placeholder={'•'} maxLength={1} className={"dot-input"} onChange={handleInput}/>
-					<input placeholder={'•'} maxLength={1} className={"dot-input"} onChange={handleInput}/>
-					<input placeholder={'•'} maxLength={1} className={"dot-input"} onChange={handleInput}/>
+					<input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput}/>
+					<input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput}/>
+					<input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput}/>
+					<input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput}/>
+					<input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput}/>
+					<input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput}/>
 				</div>
 
 			</div>

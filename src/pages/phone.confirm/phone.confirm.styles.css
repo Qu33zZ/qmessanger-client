@@ -43,3 +43,13 @@ input.dot-input::-ms-input-placeholder {
 input.dot-input::placeholder {
     color:#152033;
 }
+
+input.dot-input::-webkit-outer-spin-button,
+input.dot-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input.dot-input {
+    -moz-appearance: textfield;
+}
