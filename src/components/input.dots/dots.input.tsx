@@ -29,7 +29,7 @@ const DotsInput:React.FC<IDotsInputProps> = ({value, setValue, inputsCount = 6})
 			const nextInput = inputs[index+1] as HTMLInputElement;
 			nextInput.value = e.nativeEvent.data;
 			if(index < inputs.length-1) nextInput.focus();
-		};
+		}
 	};
 
 	const handleDelete = (e:ChangeEvent<HTMLInputElement>) =>{

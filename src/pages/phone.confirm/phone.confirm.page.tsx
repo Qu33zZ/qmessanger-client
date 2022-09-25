@@ -6,6 +6,7 @@ import "./phone.confirm.styles.css";
 import DotsInput from "../../components/input.dots/dots.input";
 import { useNavigate } from "react-router";
 import AuthService from "../../api/services/auth.service";
+import UserStore from "../../store/user.store";
 
 const PhoneConfirmPage = () => {
 	const [code, setCode] = useState<string>("");
@@ -16,6 +17,10 @@ const PhoneConfirmPage = () => {
 	const confirmLogin = async () =>{
 		if(!userId || code.length === 0) return;
 		const confirmedAuthResult = await AuthService.confirmLogin(userId, code);
+		if(confirmedAuthResult){
+			UserStore.login(confirmedAuthResult?.user);
+			navigate("/profile")
+		}
 		console.log(confirmedAuthResult)
 	};
 

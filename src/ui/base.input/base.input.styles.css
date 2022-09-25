@@ -1,0 +1,35 @@
+input.base-input{
+    padding: 10px 20px;
+
+    font-size: 22px;
+    font-weight: 600;
+
+    color: white;
+    background: #152033;
+
+    border: none;
+    border-radius: 4px;
+}
+
+input.base-input::-webkit-input-placeholder {
+    color:    #fff;
+}
+input.base-input:-moz-placeholder {
+    color:    #fff;
+    opacity:  1;
+}
+input.base-input::-moz-placeholder {
+    color:    #fff;
+    opacity:  1;
+}
+input.base-input:-ms-input-placeholder {
+    color:    #fff;
+}
+input.base-input::-ms-input-placeholder {
+    color:    #fff;
+}
+
+input.base-input::placeholder {
+    color:    #fff;
+}
+

@@ -1,0 +1,40 @@
+div.inputs-area{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0 auto;
+}
+div.inputs-area input:last-child{
+    margin-top: 20px;
+}
+
+p.profile-page-title{
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 90px;
+
+    color: #F7F7FC;
+
+    margin: 3% auto 0 auto;
+}
+
+div.user-avatar-input{
+    cursor: pointer;
+    margin: 10% auto 10% auto;
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #152033;
+    border-radius: 40px;
+}
+
+
+div.user-avatar-input svg{
+    width: 80%;
+    height: 80%;
+}
