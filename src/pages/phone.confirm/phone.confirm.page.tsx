@@ -4,12 +4,33 @@ import boySit from "../../assets/boy_sit.png";
 import BaseButton from "../../ui/base.button/base.button";
 import "./phone.confirm.styles.css";
 import DotsInput from "../../components/input.dots/dots.input";
+import { useNavigate } from "react-router";
+import AuthService from "../../api/services/auth.service";
 
 const PhoneConfirmPage = () => {
 	const [code, setCode] = useState<string>("");
+	const [userId, setUserId] = useState<string>();
 
+	const navigate = useNavigate();
 
-	useEffect(() => console.log(code), [code])
+	const confirmLogin = async () =>{
+		if(!userId || code.length === 0) return;
+		const confirmedAuthResult = await AuthService.confirmLogin(userId, code);
+		console.log(confirmedAuthResult)
+	};
+
+	useEffect(() =>{
+		const authResult = new URLSearchParams(window.location.search);
+		const codeToEnter = authResult.get('code');
+		const userIdFromQuery = authResult.get("userId");
+		if(!codeToEnter || !userIdFromQuery) return navigate("/auth");
+
+		//while unavailable to send sms to user auth code returns from server we automatically
+		//enter confirmation code from login response
+		setCode(codeToEnter);
+		setUserId(userIdFromQuery);
+
+	}, [])
 
 	return (
 		<div className={"base-page"}>
@@ -22,6 +43,7 @@ const PhoneConfirmPage = () => {
 			</div>
 			<BaseButton
 				style={{margin:"auto auto 115px auto"}}
+				onClick={confirmLogin}
 			>
 				Continue
 			</BaseButton>

@@ -49,7 +49,7 @@ const DotsInput:React.FC<IDotsInputProps> = ({value, setValue, inputsCount = 6})
 
 	return (
 		<div className={"dots-input"} ref={inputParentRef}>
-			{Array(inputsCount).fill(Math.random).map((item, index) => <input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} onBeforeInput={handleInput} onChange={handleDelete} key={index}/>)}
+			{Array(inputsCount).fill(Math.random).map((item, index) => <input placeholder={'•'} maxLength={2} type={"number"} className={"dot-input"} value={value[index]} onBeforeInput={handleInput} onChange={handleDelete} key={index}/>)}
 		</div>
 	);
 };

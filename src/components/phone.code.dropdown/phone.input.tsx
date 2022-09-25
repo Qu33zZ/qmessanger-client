@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, { SetStateAction, useState } from "react";
 import {CountryMobileCodes} from "../../assets/country.mobile.codes";
 import "./phone.input.styles.css";
 
-const PhoneInput =  () => {
-	const [phone, setPhone] = useState<string>("");
-	const [countryCode, setCountryCode] = useState<keyof typeof CountryMobileCodes>("+380");
+interface IPhoneInputProps{
+	setPhone:React.Dispatch<SetStateAction<string>>;
+	countryCode:keyof typeof CountryMobileCodes;
+	setCountryCode:React.Dispatch<SetStateAction<keyof typeof CountryMobileCodes>>;
+}
+const PhoneInput:React.FC<IPhoneInputProps> = ({setPhone, setCountryCode, countryCode}) => {
 	const [mobileCodesDropdownOpened, setMobileCodesDropdownOpened] = useState<boolean>(false);
 
 	return (
@@ -21,7 +24,7 @@ const PhoneInput =  () => {
 				}
 			</button>
 
-			<input className={"phone-input"} type="tel" placeholder={"Phone Number"}/>
+			<input className={"phone-input"} type="tel" placeholder={"Phone Number"} onChange={(e) => setPhone(e.currentTarget.value)}/>
 		</div>
 
 	);

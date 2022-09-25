@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 export const $authorizedApi = axios.create({
-	baseURL:"http://localhost:5000/",
+	baseURL:"http://localhost:5000/api/",
 	withCredentials:true
 });
 

@@ -3,7 +3,9 @@ import Router from "./router";
 
 const App = () => {
 	useEffect(() =>{
-		const authorizeUsingAccessToken = ""
+		const authorizeUsingAccessToken = () =>{
+
+		};
 	})
 	return (
 		<Router/>
