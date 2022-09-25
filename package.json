@@ -10,6 +10,10 @@
     "@types/node": "^16.11.58",
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
+    "js-cookie": "^3.0.1",
+    "mobx": "^6.6.2",
+    "mobx-react-lite": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.3.0",
@@ -42,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/js-cookie": "^3.0.2"
   }
 }
