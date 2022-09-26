@@ -7,6 +7,7 @@ import DotsInput from "../../components/input.dots/dots.input";
 import { useNavigate } from "react-router";
 import AuthService from "../../api/services/auth.service";
 import UserStore from "../../store/user.store";
+import Cookies from "js-cookie";
 
 const PhoneConfirmPage = () => {
 	const [code, setCode] = useState<string>("");
@@ -18,6 +19,8 @@ const PhoneConfirmPage = () => {
 		if(!userId || code.length === 0) return;
 		const confirmedAuthResult = await AuthService.confirmLogin(userId, code);
 		if(confirmedAuthResult){
+			Cookies.set("accessToken", confirmedAuthResult.session.accessToken);
+			Cookies.set("refreshToken", confirmedAuthResult.session.refreshToken);
 			UserStore.login(confirmedAuthResult?.user);
 			navigate("/profile")
 		}
@@ -29,6 +32,8 @@ const PhoneConfirmPage = () => {
 		const codeToEnter = authResult.get('code');
 		const userIdFromQuery = authResult.get("userId");
 		if(!codeToEnter || !userIdFromQuery) return navigate("/auth");
+
+
 
 		//while unavailable to send sms to user auth code returns from server we automatically
 		//enter confirmation code from login response
