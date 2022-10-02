@@ -1,6 +1,5 @@
 import { IUser } from "./IUser";
 import { Message } from "../objects/message";
-import ChatsStore from "../store/chats.store";
 import { IMessage } from "./IMessage";
 
 export interface IChat{

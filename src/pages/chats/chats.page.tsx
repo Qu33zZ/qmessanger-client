@@ -6,10 +6,10 @@ import "./chats.page.styles.css";
 import sprite from "../../assets/spite.svg";
 import ChatSearch from "../../components/chat.search/chat.search";
 import { observer } from "mobx-react-lite";
+import ChatMessages from "../../components/chat.messages/chat.messages";
 
 const ChatsPage = observer(() => {
 	const [loading, setLoading] = useState<boolean>(true)
-	const activeChat = ChatsStore.activeChat;
 
 	useEffect(() => {
 		const getChats = async () =>{
@@ -17,7 +17,8 @@ const ChatsPage = observer(() => {
 			if(chats) ChatsStore.setChatsFromApi(chats);
 		}
 		getChats().then(() => setLoading(false));
-	}, [])
+	}, []);
+
 	return (
 		<div className={"chats-page"}>
 			{loading
@@ -38,6 +39,8 @@ const ChatsPage = observer(() => {
 
 				</div>
 			}
+
+			<ChatMessages/>
 
 		</div>
 	);

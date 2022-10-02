@@ -1,0 +1,10 @@
+.message{
+    align-items: flex-start;
+    background: #152033;
+}
+
+.my-message{
+    align-items: flex-end;
+    background: #375FFF;
+    border-radius: 16px 16px 0px 16px;
+}

@@ -11,6 +11,11 @@ class ChatsStore{
 		makeAutoObservable(this, {}, {deep:true});
 	};
 
+	editChat(chat:IChatFromAPI){
+		// const oldChat = this.chats.get(chat.id);
+		this.chats.set(chat.id, new Chat(chat));
+	};
+
 	setActiveChat(chat:IChat){
 		this.activeChat = chat;
 	};
@@ -22,7 +27,7 @@ class ChatsStore{
 
 	private formatChatsFromApi(chats:IChatFromAPI[]):Map<string, Chat>{
 		return new Map<string, Chat>(chats.map(chat => [chat.id, new Chat(chat)]));
-	}
+	};
 
 }
 

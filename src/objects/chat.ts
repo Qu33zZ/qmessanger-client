@@ -4,6 +4,7 @@ import { IMessage } from "../interfaces/IMessage";
 import { IUser } from "../interfaces/IUser";
 import { Message } from "./message";
 import ChatsStore from "../store/chats.store";
+import MessagesService from "../api/services/messages.service";
 
 export class Chat implements IChat{
 	id:string;
@@ -16,10 +17,11 @@ export class Chat implements IChat{
 		this.members=new Map<string, IUser>(chat.members.map(member => [member.id, member]));
 		this.messages=new Map<string, Message>(chat.messages.map(message => [message.id, new Message(message)]));
 		this.createdAt=chat.createdAt;
-};
+	};
 
 	async getMessages():Promise<IMessage[]>{
-		return [];
+		const messages = await MessagesService.fetchMessages(this.id);
+		return messages;
 	}
 
 	setActiveView(){
