@@ -4,3 +4,15 @@
 
     border-radius: 10px;
 }
+
+.chat-image-with-name{
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: white;
+
+    background-color: #375FFF;
+
+    border-radius: 15px;
+}
