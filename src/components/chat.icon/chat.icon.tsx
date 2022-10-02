@@ -7,7 +7,7 @@ const ChatIcon:React.FC<Chat> = (chat) => {
 	const [member] = chat.members.values();
 	return (
 		<div className={"chat-icon"}>
-			<ChatImage avatar={member.avatar} surname={member.surname} name={member.name} alt={"Chat image"}/>
+			<ChatImage avatar={member.avatar} surname={member.surname} name={member.name}/>
 			<p>{member.name}</p>
 		</div>
 	);
