@@ -10,11 +10,11 @@ const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<MainPage/>} path={"/"}/>
+				<Route element={<MainPage/>} path={"/start"}/>
 				<Route element={<AuthPage/>} path={"/auth"}/>
 				<Route element={<PhoneConfirmPage/>} path={"/phone-confirm"}/>
 				<Route element={<UserProfilePage/>} path={"/profile"}/>
-				<Route element={<ChatsPage/>} path={"/chats"}/>
+				<Route element={<ChatsPage/>} path={"/"}/>
 			</Routes>
 		</BrowserRouter>
 	);

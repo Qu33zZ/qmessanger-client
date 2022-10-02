@@ -3,4 +3,5 @@ export interface IUser{
 	phoneNumber:string;
 	name:string;
 	surname?:string;
+	avatar?:string;
 }
