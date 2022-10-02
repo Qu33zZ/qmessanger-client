@@ -1,18 +1,16 @@
-.chat-image{
-    width: auto;
-    height: 80%;
-
-    border-radius: 10px;
+.chat-image, .chat-image-with-name{
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
 }
 
-.chat-image-with-name{
+.chat-image-with-name {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     text-align: center;
 
     color: white;
 
     background-color: #375FFF;
-
-    border-radius: 15px;
 }

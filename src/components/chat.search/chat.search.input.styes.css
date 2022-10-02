@@ -1,0 +1,10 @@
+input.chat-search{
+    display: flex;
+    align-items: center;
+
+    background: transparent;
+
+    font-weight: 600;
+    font-size: 14px;
+    color: #ADB5BD;
+}
