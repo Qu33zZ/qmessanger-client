@@ -5,7 +5,7 @@ interface IDotsInputProps{
 	value:string;
 	setValue:React.Dispatch<React.SetStateAction<string>>;
 	inputsCount?:number;
-};
+}
 
 const DotsInput:React.FC<IDotsInputProps> = ({value, setValue, inputsCount = 6}) => {
 	const inputParentRef = useRef<HTMLDivElement | null>(null);
