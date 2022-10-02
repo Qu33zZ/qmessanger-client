@@ -11,6 +11,10 @@ class ChatsStore{
 		makeAutoObservable(this, {}, {deep:true});
 	};
 
+	setActiveChat(chat:IChat){
+		this.activeChat = chat;
+	};
+
 	setChatsFromApi(chats:IChatFromAPI[]):void{
 		const formatedChats = this.formatChatsFromApi(chats);
 		this.chats = formatedChats;

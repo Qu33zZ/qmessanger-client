@@ -23,6 +23,6 @@ export class Chat implements IChat{
 	}
 
 	setActiveView(){
-		ChatsStore.activeChat = this;
+		ChatsStore.setActiveChat(this);
 	}
 }
