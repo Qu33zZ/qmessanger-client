@@ -5,9 +5,11 @@ import ChatsService from "../../api/services/chats.service";
 import "./chats.page.styles.css";
 import sprite from "../../assets/spite.svg";
 import ChatSearch from "../../components/chat.search/chat.search";
+import { observer } from "mobx-react-lite";
 
-const ChatsPage = () => {
+const ChatsPage = observer(() => {
 	const [loading, setLoading] = useState<boolean>(true)
+	const activeChat = ChatsStore.activeChat;
 
 	useEffect(() => {
 		const getChats = async () =>{
@@ -30,7 +32,7 @@ const ChatsPage = () => {
 					<ul className={"chats-list"}>
 						<ChatSearch/>
 						{
-							Array.from(ChatsStore.chats.values()).map((chat) => <ChatIcon {...chat}/>)
+							Array.from(ChatsStore.chats.values()).map((chat) => <ChatIcon chat={chat}/>)
 						}
 					</ul>
 
@@ -39,6 +41,6 @@ const ChatsPage = () => {
 
 		</div>
 	);
-};
+});
 
 export default ChatsPage;

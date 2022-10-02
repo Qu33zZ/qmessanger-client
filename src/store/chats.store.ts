@@ -4,6 +4,7 @@ import { IChatFromAPI } from "../interfaces/IChatFromAPI";
 import { Chat } from "../objects/chat";
 
 class ChatsStore{
+	activeChat:IChat | null = null;
 	chats:Map<string, IChat> = new Map<string, IChat>();
 
 	constructor() {

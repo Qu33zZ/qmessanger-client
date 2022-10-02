@@ -3,6 +3,7 @@ import { IChatFromAPI } from "../interfaces/IChatFromAPI";
 import { IMessage } from "../interfaces/IMessage";
 import { IUser } from "../interfaces/IUser";
 import { Message } from "./message";
+import ChatsStore from "../store/chats.store";
 
 export class Chat implements IChat{
 	id:string;
@@ -17,7 +18,11 @@ export class Chat implements IChat{
 		this.createdAt=chat.createdAt;
 };
 
-	async getMessages(){
+	async getMessages():Promise<IMessage[]>{
+		return [];
+	}
 
+	setActiveView(){
+		ChatsStore.activeChat = this;
 	}
 }
