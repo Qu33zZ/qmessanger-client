@@ -5,6 +5,7 @@ import UserProfilePage from "./pages/user.profile/user.profile.page";
 import PhoneConfirmPage from "./pages/phone.confirm/phone.confirm.page";
 import AuthPage from "./pages/auth/auth.page";
 import ChatsPage from "./pages/chats/chats.page";
+import ChatMessagesPage from "./pages/chat.messages.page/chat.messages.page";
 
 const Router = () => {
 	return (
@@ -15,6 +16,7 @@ const Router = () => {
 				<Route element={<PhoneConfirmPage/>} path={"/phone-confirm"}/>
 				<Route element={<UserProfilePage/>} path={"/profile"}/>
 				<Route element={<ChatsPage/>} path={"/"}/>
+				<Route element={<ChatMessagesPage/>} path={"/:chatId"}/>
 			</Routes>
 		</BrowserRouter>
 	);

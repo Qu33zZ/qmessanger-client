@@ -1,8 +1,8 @@
 .unselect-chat-messages{
     height: 100%;
-    width: calc(100% - 23%);
+    width: calc(100% - 23vw);
 
-    margin-left: 23%;
+    margin-left:23vw;
 
     display: flex;
     align-items: center;
@@ -10,11 +10,13 @@
 }
 
 .chat-messages{
-    height: 100%;
-    width: calc(100% - 23%);
-
-    margin-left: 23%;
+    height:100%;
+    width: calc(100% - 23vw);
 
     display: flex;
     flex-direction: column;
+
+    margin-left: 23vw;
+    margin-top: 81px;
+    padding: 15px;
 }

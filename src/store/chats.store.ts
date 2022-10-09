@@ -2,22 +2,25 @@ import { makeAutoObservable } from "mobx";
 import { IChat } from "../interfaces/IChat";
 import { IChatFromAPI } from "../interfaces/IChatFromAPI";
 import { Chat } from "../objects/chat";
+import { Message } from "../objects/message";
+
 
 class ChatsStore{
-	activeChat:IChat | null = null;
+	// activeChat:IChat | null = null;
 	chats:Map<string, IChat> = new Map<string, IChat>();
 
 	constructor() {
 		makeAutoObservable(this, {}, {deep:true});
 	};
 
-	editChat(chat:IChatFromAPI){
-		// const oldChat = this.chats.get(chat.id);
-		this.chats.set(chat.id, new Chat(chat));
-	};
+	editChatMessages(chatId:string, messages:Map<string, Message>){
+		const chat = this.chats.get(chatId);
+		if(!chat) return;
 
-	setActiveChat(chat:IChat){
-		this.activeChat = chat;
+		const chatCopy = Object.assign(Object.create(Object.getPrototypeOf(chat)), chat);
+		chatCopy.messages = messages;
+
+		this.chats.set(chatId, chatCopy);
 	};
 
 	setChatsFromApi(chats:IChatFromAPI[]):void{

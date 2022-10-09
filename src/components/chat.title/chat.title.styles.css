@@ -1,0 +1,31 @@
+.chat-title-block{
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    z-index: 1;
+    background-color: #0F1828;
+    width: calc(100% - 23vw);
+    height: 81px;
+
+    margin-left: 23vw;
+    padding: 0 15px;
+
+    border-bottom: 1px solid #152033;
+
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+
+.chat-title{
+    display: flex;
+    align-items:center;
+}
+
+.member-name-and-surname-chat-title{
+    font-size: 16px;
+    font-weight: 500;
+
+    margin-left: 10px;
+}

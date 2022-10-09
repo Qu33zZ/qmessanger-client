@@ -1,0 +1,37 @@
+div.chats-list-block{
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 23vw;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    border-right: 1px solid #152033;
+}
+
+.chats-block-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #152033;
+    padding: 15px 25px 15px 25px;
+}
+
+.chats-block-header p.chats-block-title{
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+}
+.chats-block-header svg.add-chat-icon{
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+ul.chats-list{
+    padding: 15px 0;
+}

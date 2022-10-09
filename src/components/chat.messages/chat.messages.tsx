@@ -1,53 +1,49 @@
 import React, { useEffect, useState } from "react";
-import ChatsStore from "../../store/chats.store";
-import { Message as MessageObject } from "../../objects/message";
 import Message  from "../message/message";
 import "./chat.messages.style.css";
 import { observer } from "mobx-react-lite";
+import { IChat } from "../../interfaces/IChat";
+import Loader from "../../ui/loader/loader";
 
-const ChatMessages = observer(() => {
-	const [loaded, setLoaded] = useState<boolean>(false);
-	const activeChat = ChatsStore.activeChat;
-	console.log(activeChat);
-
-
-
+interface IChatMessagesProps{
+	activeChat:IChat
+}
+const ChatMessages:React.FC<IChatMessagesProps> = observer(({activeChat}) => {
+	const [loading, setLoading] = useState<boolean>(true);
+	console.log("loading", loading)
 	useEffect(() => {
-		console.log(`Active chat ${activeChat}`);
-		const getChatMessages = async () =>{
-			console.log("Fetching messages....")
+		const fetchMessages = async () => {
 			if(activeChat){
 				const messages = await activeChat.getMessages();
-				activeChat.messages = new Map<string, MessageObject>(messages.map(message => [message.id, new MessageObject(message)]));
-			}else{console.log("No active chat")}
+				activeChat.setMessages(messages);
+			}
 		};
-		getChatMessages().then(() => {console.log("Finish fetching message"); setLoaded(true)});
+		fetchMessages().finally(() => {
+			setLoading(false);
+		});
 	}, []);
 
-	if(!activeChat) return (
-		<div className={"unselect-chat-messages"}>
-			<p>Select chat</p>
+
+	if(!activeChat.messages || activeChat.messages.size === 0) return (
+		<div className="unselect-chat-messages">
+			<p>This chat is empty</p>
 		</div>
 	);
-
-	if(!loaded) return (
-		<div className={"unselect-chat-messages"}>
-			<p>Loading...</p>
-		</div>
-	)
 
 	return (
-		<div className={"chat-messages"}>
-			{loaded
-				? <p>Loading...</p>
-				: (
-					(!activeChat.messages || activeChat.messages.size === 0 )
-						? <p>This chat is empty</p>
-						: Array.from(activeChat.messages.values()).map(message => <Message {...message}/>)
-				)
-			}
-		</div>
-	);
+		loading
+			?
+				<div className="unselect-chat-messages">
+					<Loader/>
+				</div>
+			:
+				<div className={"chat-messages"}>
+				{
+					Array.from(activeChat.messages.values()).map(message => <Message {...message} key={message.id}/>)
+				}
+				</div>
+		);
+
 });
 
 export default ChatMessages;

@@ -4,9 +4,9 @@ import UserStore from "../../store/user.store";
 import "./message.styles.css";
 
 const Message:React.FC<IMessage> = (message) => {
-	console.log("message", message)
+	console.log(message?.author?.id, "user", UserStore.user?.id);
 	return (
-		<div className={message.author.id === UserStore.user?.id ? "my-message" : "message"}>
+		<div className={message?.author?.id === UserStore.user?.id ? "my-message" : "message"}>
 			{message.content}
 		</div>
 	);

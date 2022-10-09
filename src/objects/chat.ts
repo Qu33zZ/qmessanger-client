@@ -19,12 +19,23 @@ export class Chat implements IChat{
 		this.createdAt=chat.createdAt;
 	};
 
+
+	setMessages(newMessages:IMessage[]){
+		const formatedMessages = this.formatMessages(newMessages);
+		this.messages = formatedMessages;
+		ChatsStore.editChatMessages(this.id, formatedMessages);
+	};
+
+	private formatMessages(messages:IMessage[]):Map<string, Message>{
+		return new Map<string, Message>(messages.map(msg => [msg.id, new Message(msg)]));
+	};
+
 	async getMessages():Promise<IMessage[]>{
 		const messages = await MessagesService.fetchMessages(this.id);
 		return messages;
-	}
+	};
 
 	setActiveView(){
-		ChatsStore.setActiveChat(this);
+		// ChatsStore.setActiveChat(this);
 	}
 }

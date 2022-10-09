@@ -9,4 +9,5 @@ export interface IChat{
 	createdAt:Date;
 	getMessages():Promise<IMessage[]>;
 	setActiveView():void;
+	setMessages(newMessages:IMessage[]):void;
 }

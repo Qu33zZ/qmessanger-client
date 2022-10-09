@@ -1,10 +1,25 @@
+.message, .my-message{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: fit-content;
+    max-width: 45%;
+
+    padding: 15px;
+
+
+    margin: 10px 0 10px 0;
+}
+
 .message{
-    align-items: flex-start;
+    align-self: flex-start;
     background: #152033;
+    border-radius: 16px 16px 16px 0;
 }
 
 .my-message{
-    align-items: flex-end;
+    align-self: flex-end;
     background: #375FFF;
-    border-radius: 16px 16px 0px 16px;
+    border-radius: 16px 16px 0 16px;
 }

@@ -14,7 +14,18 @@ class AuthService{
 		}
 	};
 
-	//confirm login using code from sms
+	async refresh(){
+		try{
+			const response = await $api.post("/auth/refresh");
+			if(response.status === 200){
+				return response.data;
+			}else return null;
+		}catch (e){
+			console.log(e);
+			return null;
+		}
+	}
+	//confirm login using code from sms-verification
 	async confirmLogin(userId:string, code:string):Promise<ILoginResponse | null>{
 		try {
 			const response = await $api.post<ILoginResponse>(`/auth/confirmLogin/${userId}/${code}`);

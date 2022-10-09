@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import authService from "./services/auth.service";
 
 export const $authorizedApi = axios.create({
 	baseURL:"http://localhost:5000/api/",
@@ -20,10 +21,11 @@ $authorizedApi.interceptors.response.use(
 		if (error?.response?.status === 401 && !reqConfig?.retried) {
 			return new Promise((resolve, reject) =>{
 				reqConfig.retried = true;
-				resolve({});
-				// authService.refresh().then((result)=>{
-				// 	    resolve($authApi.request(reqConfig));
-				// });
+				authService.refresh().then((result)=>{
+					Cookies.set("accessToken", result?.session?.accessToken);
+					Cookies.set("refreshToken", result?.session?.refreshToken);
+				    resolve($authorizedApi.request(reqConfig));
+				});
 			});
 		}
 

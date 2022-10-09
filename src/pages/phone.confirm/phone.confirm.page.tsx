@@ -35,7 +35,7 @@ const PhoneConfirmPage = () => {
 
 
 
-		//while unavailable to send sms to user auth code returns from server we automatically
+		//while unavailable to send sms-verification to user auth code returns from server we automatically
 		//enter confirmation code from login response
 		setCode(codeToEnter);
 		setUserId(userIdFromQuery);
