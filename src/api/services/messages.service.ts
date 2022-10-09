@@ -1,5 +1,6 @@
 import { $authorizedApi } from "../axios.auth.instance";
 import { IMessage } from "../../interfaces/IMessage";
+import { Message } from "../../objects/message";
 
 class MessagesService{
 
@@ -20,7 +21,31 @@ class MessagesService{
 			console.log(e)
 		}
 
+	};
+
+	async sendMessage(chatId:string, content:string):Promise<Message | null>{
+		try{
+			const result = await $authorizedApi.post<IMessage>(`/messages/channels/:${chatId}`);
+			if(result.status === 201) return new Message(result.data);
+			return null;
+		}catch (e){
+			return null;
+			console.log(e)
+		}
+	};
+
+	async updateMessage(messageId:string, newContent:string){
+		try{
+			const result = await $authorizedApi.put<IMessage>(`/messages/:${messageId}`, {content:newContent});
+			if(result.status === 200) return new Message(result.data);
+			return null;
+		}catch (e){
+			return null;
+			console.log(e)
+		}
 	}
+
+
 }
 
 export default new MessagesService();
