@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Message  from "../message/message";
 import "./chat.messages.style.css";
 import { observer } from "mobx-react-lite";
@@ -10,7 +10,7 @@ interface IChatMessagesProps{
 }
 const ChatMessages:React.FC<IChatMessagesProps> = observer(({activeChat}) => {
 	const [loading, setLoading] = useState<boolean>(true);
-	console.log("loading", loading)
+
 	useEffect(() => {
 		const fetchMessages = async () => {
 			if(activeChat){
@@ -37,7 +37,7 @@ const ChatMessages:React.FC<IChatMessagesProps> = observer(({activeChat}) => {
 					<Loader/>
 				</div>
 			:
-				<div className={"chat-messages"}>
+				<div className={"chat-messages custom-scroll"}>
 				{
 					Array.from(activeChat.messages.values()).map(message => <Message {...message} key={message.id}/>)
 				}

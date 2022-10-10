@@ -25,7 +25,7 @@ class MessagesService{
 
 	async sendMessage(chatId:string, content:string):Promise<Message | null>{
 		try{
-			const result = await $authorizedApi.post<IMessage>(`/messages/channels/:${chatId}`);
+			const result = await $authorizedApi.post<IMessage>(`/messages/channels/${chatId}`, {content});
 			if(result.status === 201) return new Message(result.data);
 			return null;
 		}catch (e){
@@ -36,7 +36,7 @@ class MessagesService{
 
 	async updateMessage(messageId:string, newContent:string){
 		try{
-			const result = await $authorizedApi.put<IMessage>(`/messages/:${messageId}`, {content:newContent});
+			const result = await $authorizedApi.put<IMessage>(`/messages/${messageId}`, {content:newContent});
 			if(result.status === 200) return new Message(result.data);
 			return null;
 		}catch (e){

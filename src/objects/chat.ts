@@ -6,6 +6,7 @@ import { Message } from "./message";
 import ChatsStore from "../store/chats.store";
 import MessagesService from "../api/services/messages.service";
 
+
 export class Chat implements IChat{
 	id:string;
 	members:Map<string, IUser>;
@@ -34,6 +35,16 @@ export class Chat implements IChat{
 		const messages = await MessagesService.fetchMessages(this.id);
 		return messages;
 	};
+
+	async sendMessage(content:string):Promise<void>{
+		const result = await MessagesService.sendMessage(this.id, content);
+		if(result) this.addNewMessage(result);
+	}
+
+	addNewMessage(message:Message){
+		this.messages.set(message.id, message);
+		ChatsStore.editChatMessages(this.id, this.messages);
+	}
 
 	setActiveView(){
 		// ChatsStore.setActiveChat(this);

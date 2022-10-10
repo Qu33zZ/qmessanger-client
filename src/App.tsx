@@ -3,6 +3,7 @@ import Router from "./router";
 import UserService from "./api/services/user.service";
 import UserStore from "./store/user.store";
 import Loader from "./ui/loader/loader";
+import SocketClient from "./api/socket.client";
 
 const App = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -12,7 +13,12 @@ const App = () => {
 			const user = await UserService.getMe();
 			if(user) UserStore.login(user);
 		};
-		authorizeUsingAccessToken().finally(() => setLoading(false));
+		authorizeUsingAccessToken().finally(
+			() => {
+				setLoading(false);
+				new SocketClient();
+			}
+	);
 	})
 	return (
 		loading
