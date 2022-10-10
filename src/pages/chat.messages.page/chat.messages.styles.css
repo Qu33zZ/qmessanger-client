@@ -3,3 +3,17 @@
     height: 100%;
     overflow: hidden;
 }
+
+
+.chat-messages-container{
+    height:calc(100% - 81px);
+    width: calc(100% - 23vw);
+
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 23vw;
+    margin-top: 81px;
+}
+
+

@@ -1,0 +1,88 @@
+.message-input-area{
+    width: calc(100vw - 23vw);
+    height: 65px;
+    min-height: 65px;
+    max-height: 40%;
+
+    padding: 10px 20px;
+
+    /*margin-left: 23vw;*/
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #0F1828;
+}
+
+.message-input-area .message-input{
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 45px;
+    min-height: 45px;
+
+    overflow-y: hidden;
+
+    resize: none;
+
+    padding: 10px 20px;
+
+    color: white;
+
+    background: #152033;
+    border-radius: 4px;
+}
+.message-input-area .message-input::-webkit-input-placeholder {
+    color:    #fff;
+    /*line-height: 100%;*/
+    /*vertical-align:middle;*/
+}
+.message-input-area .message-input:-moz-placeholder {
+    color:    #fff;
+    /*line-height: 100%;*/
+    opacity:  1;
+    /*vertical-align:middle;*/
+}
+.message-input-area .message-input::-moz-placeholder {
+    color:    #fff;
+    /*line-height: 100%;*/
+    opacity:  1;
+    /*vertical-align:middle;*/
+}
+.message-input-area .message-input:-ms-input-placeholder {
+    color:    #fff;
+    /*line-height: 100%;*/
+    /*vertical-align:middle;*/
+}
+.message-input-area .message-input::-ms-input-placeholder {
+    color:    #fff;
+    /*line-height: 100%;*/
+    /*vertical-align:middle;*/
+}
+
+.message-input-area .message-input::placeholder {
+    color:    #fff;
+    /*line-height: 100%;*/
+    /*vertical-align:middle;*/
+}
+
+
+button.send-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: auto;
+
+    background: transparent;
+    border: none;
+}
+
+button.send-message svg.plane-icon{
+    width: 40px;
+    height: 40px;
+
+    fill: #375FFF;
+}

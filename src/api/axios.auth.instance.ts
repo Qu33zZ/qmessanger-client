@@ -1,9 +1,10 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import authService from "./services/auth.service";
+import { CONFIG } from "../config";
 
 export const $authorizedApi = axios.create({
-	baseURL:"http://localhost:5000/api/",
+	baseURL:CONFIG.api.server_url + CONFIG.api.rest_base_endpoint,
 	withCredentials:true
 });
 
@@ -12,7 +13,6 @@ $authorizedApi.interceptors.request.use((reqConfig) =>{
 	if(token) reqConfig.headers = {...reqConfig.headers, authorization:`Bearer ${token}`};
 	return reqConfig;
 }, error => error)
-
 
 $authorizedApi.interceptors.response.use(
 	(data) => data,

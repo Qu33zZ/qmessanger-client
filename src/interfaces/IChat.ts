@@ -8,6 +8,7 @@ export interface IChat{
 	messages:Map<string, Message>;
 	createdAt:Date;
 	getMessages():Promise<IMessage[]>;
-	setActiveView():void;
 	setMessages(newMessages:IMessage[]):void;
+	sendMessage(content:string):Promise<void>
+	addNewMessage(message:Message):void;
 }

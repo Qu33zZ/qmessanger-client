@@ -7,15 +7,23 @@ import { NavLink } from "react-router-dom";
 
 const ChatIcon:React.FC<{chat:IChat}> = ({chat}) => {
 	const [member] = Array.from(chat.members.values()).filter(mem => mem.id !== UserStore.user?.id);
-	const [firstMessage] = Array.from(chat.messages.values()).filter(mem => mem.id !== UserStore.user?.id);
+	const messages = Array.from(chat.messages.values()).filter(mem => mem.id !== UserStore.user?.id);
+	const latestMessage = messages[messages.length -1];
 
 	return (
-		<NavLink to={`/${chat.id}`} className={(state) => state.isActive ? "chat-icon-active" : "chat-icon"}>
+		<NavLink
+			to={`/${chat.id}`}
+			className={(state) => state.isActive ? "chat-icon-active" : "chat-icon"}
+		>
 			<div className={"chat-icon-content"}>
 				<ChatImage avatar={member.avatar} surname={member.surname} name={member.name}/>
 				<div className="chat-name-and-last-message">
 					<p className={"chat-name"}>{`${member.name} ${(member.surname || "")}`}</p>
-					<p className={"last-message"}>{firstMessage?.content?.length > 45 ? firstMessage.content?.slice(0, 45) + "...": firstMessage?.content}</p>
+					<p className={"last-message"}>
+						{latestMessage?.content?.length > 45
+							? latestMessage.content?.slice(0, 45) + "..."
+							: latestMessage?.content}
+					</p>
 				</div>
 			</div>
 		</NavLink>
