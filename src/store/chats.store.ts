@@ -1,13 +1,13 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, ObservableMap } from "mobx";
 import { IChat } from "../interfaces/IChat";
 import { IChatFromAPI } from "../interfaces/IChatFromAPI";
 import { Chat } from "../objects/chat";
 import { Message } from "../objects/message";
+import { observable } from "mobx";
 
 
 class ChatsStore{
-	// activeChat:IChat | null = null;
-	chats:Map<string, IChat> = new Map<string, IChat>();
+	chats:ObservableMap<string, IChat> = observable.map<string, IChat>();
 
 	constructor() {
 		makeAutoObservable(this, {}, {deep:true});
@@ -28,8 +28,12 @@ class ChatsStore{
 		this.chats = formatedChats;
 	};
 
-	private formatChatsFromApi(chats:IChatFromAPI[]):Map<string, Chat>{
-		return new Map<string, Chat>(chats.map(chat => [chat.id, new Chat(chat)]));
+	deleteMessage(message:Message){
+		this.chats.get(message.chat.id)?.messages?.delete(message.id);
+	}
+
+	private formatChatsFromApi(chats:IChatFromAPI[]):ObservableMap<string, IChat>{
+		return observable.map<string, IChat>(chats.map(chat => [chat.id, new Chat(chat)]));
 	};
 
 }

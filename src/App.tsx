@@ -15,10 +15,10 @@ const App = () => {
 		};
 		authorizeUsingAccessToken().finally(
 			() => {
-				setLoading(false);
 				new SocketClient();
+				setLoading(false);
 			}
-	);
+		);
 	})
 	return (
 		loading
