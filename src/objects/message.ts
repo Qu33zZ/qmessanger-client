@@ -3,6 +3,7 @@ import { IChat } from "../interfaces/IChat";
 import { IUser } from "../interfaces/IUser";
 import MessagesService from "../api/services/messages.service";
 import ChatsStore from "../store/chats.store";
+import UserStore from "../store/user.store";
 
 export class Message implements IMessage{
 	id:string;
@@ -20,8 +21,10 @@ export class Message implements IMessage{
 	}
 
 	async delete(){
-		await MessagesService.deleteMessage(this.id);
-		ChatsStore.chats.get(this.chat.id)?.messages?.delete(this.id);
+		if(this.author.id === UserStore.user?.id){
+			await MessagesService.deleteMessage(this.id);
+		}
+		ChatsStore.deleteMessage(this);
 	};
 
 	async edit(content:string){

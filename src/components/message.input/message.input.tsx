@@ -6,6 +6,7 @@ import { IChat } from "../../interfaces/IChat";
 interface IMessageInputProps{
 	chat:IChat;
 }
+
 const MessageInput:React.FC<IMessageInputProps> = ({chat}) => {
 
 	const [messageContent, setMessageContent] = useState<string>("");

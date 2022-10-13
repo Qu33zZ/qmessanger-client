@@ -24,6 +24,7 @@ class SocketClient{
 	}
 	setupEvents(){
 		this.socket.on("message", this.handleNewMessage);
+		this.socket.on("messageDelete", this.handleMessageDelete);
 	}
 
 	async handleNewMessage(message:IMessage){
@@ -31,6 +32,12 @@ class SocketClient{
 		const messageChannelInStore = ChatsStore.chats.get(messageObject.chat.id);
 		if(messageChannelInStore) messageChannelInStore.addNewMessage(messageObject);
 	};
+
+	async handleMessageDelete(message:IMessage){
+		console.log("Deleteing", message);
+		const messageObject = new Message(message);
+		await messageObject.delete();
+	}
 }
 
 export default SocketClient;

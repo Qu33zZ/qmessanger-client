@@ -4,8 +4,9 @@ import "./chat.icon.styles.css";
 import { IChat } from "../../interfaces/IChat";
 import UserStore from "../../store/user.store";
 import { NavLink } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 
-const ChatIcon:React.FC<{chat:IChat}> = ({chat}) => {
+const ChatIcon:React.FC<{chat:IChat}> = observer(({chat}) => {
 	const [member] = Array.from(chat.members.values()).filter(mem => mem.id !== UserStore.user?.id);
 	const messages = Array.from(chat.messages.values()).filter(mem => mem.id !== UserStore.user?.id);
 	const latestMessage = messages[messages.length -1];
@@ -29,6 +30,6 @@ const ChatIcon:React.FC<{chat:IChat}> = ({chat}) => {
 		</NavLink>
 
 	);
-};
+});
 
 export default ChatIcon;
