@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatsStore from "../../store/chats.store";
 import { Navigate, useParams } from "react-router";
 import ChatsList from "../../components/chats.list/chats.list";
@@ -9,10 +9,8 @@ import { observer } from "mobx-react-lite";
 import MessageInput from "../../components/message.input/message.input";
 
 const ChatMessagesPage = observer(() => {
-
 	const {chatId} = useParams();
 	const activeChat = ChatsStore.chats.get(chatId || "");
-
 
 
 	if(!activeChat){

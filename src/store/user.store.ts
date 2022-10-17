@@ -3,6 +3,7 @@ import { IUser } from "../interfaces/IUser";
 
 class UserStore{
 	user:IUser | null = null;
+
 	constructor() {
 		makeAutoObservable(this, {}, {deep:true});
 	}

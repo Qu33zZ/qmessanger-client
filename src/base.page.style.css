@@ -29,3 +29,7 @@ div.base-page{
     border-radius: 15px;
     border: 0px none #ffffff;
 }
+
+.scroll-lock{
+    overflow: hidden;
+}

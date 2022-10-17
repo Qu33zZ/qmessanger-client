@@ -12,6 +12,7 @@ export class Chat implements IChat{
 	id:string;
 	members:Map<string, IUser>;
 	messages:ObservableMap<string, Message>;
+	selectedMessageForReply:Message | null;
 	createdAt:Date;
 
 	constructor(chat:IChatFromAPI) {
@@ -19,6 +20,7 @@ export class Chat implements IChat{
 		this.members=new Map<string, IUser>(chat.members.map(member => [member.id, member]));
 		this.messages=observable.map<string, Message>(chat.messages.map(message => [message.id, new Message(message)]));
 		this.createdAt=chat.createdAt;
+		this.selectedMessageForReply = null;
 	};
 
 
@@ -37,9 +39,9 @@ export class Chat implements IChat{
 		return messages;
 	};
 
-	async sendMessage(content:string):Promise<void>{
-		const result = await MessagesService.sendMessage(this.id, content);
-		if(result) this.addNewMessage(result);
+	async sendMessage(content:string, replyTo?:string):Promise<void>{
+		await MessagesService.sendMessage(this.id, content, replyTo);
+		// if(result) this.addNewMessage(result);
 	}
 
 	addNewMessage(message:Message){

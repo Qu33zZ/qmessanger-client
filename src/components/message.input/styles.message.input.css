@@ -1,18 +1,23 @@
 .message-input-area{
     width: calc(100vw - 23vw);
-    height: 65px;
+    /*height: 65px;*/
     min-height: 65px;
     max-height: 40%;
 
-    padding: 10px 20px;
+    padding: 10px;
 
     /*margin-left: 23vw;*/
 
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
 
     background-color: #0F1828;
+}
+
+.message-content-input-block{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .message-input-area .message-input{
@@ -34,10 +39,9 @@
     background: #152033;
     border-radius: 4px;
 }
+
 .message-input-area .message-input::-webkit-input-placeholder {
     color:    #fff;
-    /*line-height: 100%;*/
-    /*vertical-align:middle;*/
 }
 .message-input-area .message-input:-moz-placeholder {
     color:    #fff;

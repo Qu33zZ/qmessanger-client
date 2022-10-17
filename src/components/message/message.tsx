@@ -19,6 +19,21 @@ const Message:React.FC<IMessageProps> = ({message, setMenuState}) => {
 		});
 	};
 
+	if(message.repliedTo){
+		return (
+			<div className={`message-reply-container ${message?.author?.id === UserStore.user?.id ? "me-replying" : "not-me-replying"}`}>
+				<div className="reply">
+					{message.repliedTo.content}
+				</div>
+				<div
+					onContextMenu={handleMenuOpen}
+					className={message?.author?.id === UserStore.user?.id ? "my-message" : "message"}
+				>
+					{message.content}
+				</div>
+			</div>
+		)
+	}
 	return (
 		<div
 			onContextMenu={handleMenuOpen}

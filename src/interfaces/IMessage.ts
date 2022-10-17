@@ -6,5 +6,9 @@ export interface IMessage{
 	author:IUser;
 	content:string;
 	chat:IChat;
+	repliedToId:string;
+	repliedTo:IMessage
 	createdAt:Date;
+	selectForReply():void;
+	edit(newContent:string):Promise<void>;
 }

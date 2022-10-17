@@ -23,9 +23,9 @@ class MessagesService{
 
 	};
 
-	async sendMessage(chatId:string, content:string):Promise<Message | null>{
+	async sendMessage(chatId:string, content:string, replyTo?:string):Promise<Message | null>{
 		try{
-			const result = await $authorizedApi.post<IMessage>(`/messages/channels/${chatId}`, {content});
+			const result = await $authorizedApi.post<IMessage>(`/messages/channels/${chatId}`, {content, repliedToId:replyTo});
 			if(result.status === 201) return new Message(result.data);
 			return null;
 		}catch (e){

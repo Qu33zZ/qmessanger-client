@@ -21,9 +21,7 @@ const ChatIcon:React.FC<{chat:IChat}> = observer(({chat}) => {
 				<div className="chat-name-and-last-message">
 					<p className={"chat-name"}>{`${member.name} ${(member.surname || "")}`}</p>
 					<p className={"last-message"}>
-						{latestMessage?.content?.length > 45
-							? latestMessage.content?.slice(0, 45) + "..."
-							: latestMessage?.content}
+						{latestMessage?.content}
 					</p>
 				</div>
 			</div>

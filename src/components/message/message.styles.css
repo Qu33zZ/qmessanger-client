@@ -8,7 +8,7 @@
 
     padding: 15px;
 
-    margin: 5px 0;
+    margin-top: 10px;
 
     word-break: break-word;
 }
@@ -23,4 +23,41 @@
     align-self: flex-end;
     background: #375FFF;
     border-radius: 16px 16px 0 16px;
+}
+
+.message-reply-container{
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.message-reply-container.me-replying{
+    align-self: flex-end;
+}
+
+.reply{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    width: fit-content;
+    max-width: 45%;
+
+    padding: 15px;
+
+    word-break: break-word;
+
+    background: #152033;
+    border-radius: 4px;
+}
+
+.message-reply-container.me-replying .reply{
+    align-self: flex-end;
+    border-right: 4px solid white ;
+}
+
+.message-reply-container.not-me-replying .reply{
+    align-self: flex-start;
+    border-left: 4px solid white ;
 }

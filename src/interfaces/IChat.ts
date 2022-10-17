@@ -8,8 +8,9 @@ export interface IChat{
 	members:Map<string, IUser>;
 	messages:ObservableMap<string, Message>;
 	createdAt:Date;
+	selectedMessageForReply:Message | null;
 	getMessages():Promise<IMessage[]>;
 	setMessages(newMessages:IMessage[]):void;
-	sendMessage(content:string):Promise<void>
+	sendMessage(content:string, replyTo?:string):Promise<void>
 	addNewMessage(message:Message):void;
 }

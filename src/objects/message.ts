@@ -10,6 +10,8 @@ export class Message implements IMessage{
 	author:IUser;
 	content:string;
 	chat:IChat;
+	repliedToId:string;
+	repliedTo:IMessage
 	createdAt:Date;
 
 	constructor(message:IMessage){
@@ -18,6 +20,8 @@ export class Message implements IMessage{
 		this.content=message.content;
 		this.chat=message.chat;
 		this.createdAt=message.createdAt;
+		this.repliedTo = message.repliedTo;
+		this.repliedToId = message.repliedToId;
 	}
 
 	async delete(){
@@ -27,8 +31,12 @@ export class Message implements IMessage{
 		ChatsStore.deleteMessage(this);
 	};
 
-	async edit(content:string){
+	async edit(content:string):Promise<void>{
 		await MessagesService.deleteMessage(this.id);
 		this.content=content;
+	};
+
+	selectForReply(){
+		ChatsStore.selectMessageForReply(this);
 	};
 }

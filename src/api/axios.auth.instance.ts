@@ -22,9 +22,11 @@ $authorizedApi.interceptors.response.use(
 			return new Promise((resolve, reject) =>{
 				reqConfig.retried = true;
 				authService.refresh().then((result)=>{
-					Cookies.set("accessToken", result?.session?.accessToken);
-					Cookies.set("refreshToken", result?.session?.refreshToken);
-				    resolve($authorizedApi.request(reqConfig));
+					if(result){
+						Cookies.set("accessToken", result?.session?.accessToken);
+						Cookies.set("refreshToken", result?.session?.refreshToken);
+						resolve($authorizedApi.request(reqConfig));
+					}
 				});
 			});
 		}

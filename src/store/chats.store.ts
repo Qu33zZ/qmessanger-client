@@ -10,7 +10,7 @@ class ChatsStore{
 	chats:ObservableMap<string, IChat> = observable.map<string, IChat>();
 
 	constructor() {
-		makeAutoObservable(this, {}, {deep:true});
+		makeAutoObservable(this, undefined, {deep:true});
 	};
 
 	editChatMessages(chatId:string, messages:Map<string, Message>){
@@ -32,6 +32,24 @@ class ChatsStore{
 		this.chats.get(message.chat.id)?.messages?.delete(message.id);
 	}
 
+	selectMessageForReply(message:Message){
+		const chat = this.chats.get(message.chat.id);
+		const chatCopy = Object.assign(Object.create(Object.getPrototypeOf(chat)), chat);
+
+		if(chat){
+			chatCopy.selectedMessageForReply = message;
+			this.chats.set(chat.id, chatCopy);
+		}
+	};
+
+	unselectMessageForReply(chatId:string){
+		const chat = this.chats.get(chatId);
+		if(chat){
+			const chatCopy = Object.assign(Object.create(Object.getPrototypeOf(chat)), chat);
+			chatCopy.selectedMessageForReply = null;
+			this.chats.set(chat.id, chatCopy);
+		}
+	}
 	private formatChatsFromApi(chats:IChatFromAPI[]):ObservableMap<string, IChat>{
 		return observable.map<string, IChat>(chats.map(chat => [chat.id, new Chat(chat)]));
 	};
