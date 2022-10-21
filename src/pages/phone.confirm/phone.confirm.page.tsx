@@ -10,13 +10,13 @@ import UserStore from "../../store/user.store";
 import Cookies from "js-cookie";
 
 const PhoneConfirmPage = () => {
-	const [code, setCode] = useState<string>("");
 	const [userId, setUserId] = useState<string>();
-
+	const [code, setCode] = useState<string>("");
 	const navigate = useNavigate();
 
 	const confirmLogin = async () =>{
 		if(!userId || code.length === 0) return;
+
 		const confirmedAuthResult = await AuthService.confirmLogin(userId, code);
 		if(confirmedAuthResult){
 			Cookies.set("accessToken", confirmedAuthResult.session.accessToken);
@@ -24,22 +24,14 @@ const PhoneConfirmPage = () => {
 			UserStore.login(confirmedAuthResult?.user);
 			navigate("/profile")
 		}
-		console.log(confirmedAuthResult)
 	};
 
 	useEffect(() =>{
 		const authResult = new URLSearchParams(window.location.search);
-		const codeToEnter = authResult.get('code');
 		const userIdFromQuery = authResult.get("userId");
-		if(!codeToEnter || !userIdFromQuery) return navigate("/auth");
 
-
-
-		//while unavailable to send sms-verification to user auth code returns from server we automatically
-		//enter confirmation code from login response
-		setCode(codeToEnter);
+		if(!userIdFromQuery) return navigate("/auth");
 		setUserId(userIdFromQuery);
-
 	}, [])
 
 	return (
@@ -48,7 +40,7 @@ const PhoneConfirmPage = () => {
 			<p className={"phone-description-text"}><span>Enter confirmation code</span><br/>We have sent you an SMS with the code to +62 1309 - 1710 - 1920</p>
 			<img src={womenSit} alt="Women" className={"women"}/>
 			<img src={boySit} alt="Boy" className={"boy"}/>
-			<div className={"phone-input-area"}>
+			<div className={"email-confirm-code-area"}>
 				<DotsInput value={code} setValue={setCode}/>
 			</div>
 			<BaseButton

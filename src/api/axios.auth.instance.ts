@@ -18,19 +18,22 @@ $authorizedApi.interceptors.response.use(
 	(data) => data,
 	(error) => {
 		const reqConfig = Object.assign({}, error.config);
-		if (error?.response?.status === 401 && !reqConfig?.retried) {
+		if(error?.response?.status === 401 && !reqConfig?.retried) {
 			return new Promise((resolve, reject) =>{
 				reqConfig.retried = true;
 				authService.refresh().then((result)=>{
+					console.log(result);
 					if(result){
-						Cookies.set("accessToken", result?.session?.accessToken);
-						Cookies.set("refreshToken", result?.session?.refreshToken);
-						resolve($authorizedApi.request(reqConfig));
+						Cookies.set("accessToken", result.session.accessToken);
+						Cookies.set("refreshToken", result.session.refreshToken);
+						$authorizedApi.request(reqConfig)
+							.then(data => resolve(data))
+					}else {
+						reject("Can't refresh auth token")
 					}
-				});
+				})
 			});
 		}
-
 		return Promise.reject(error)
 
 	});

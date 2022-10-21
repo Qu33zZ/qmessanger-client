@@ -6,6 +6,7 @@ import PhoneConfirmPage from "./pages/phone.confirm/phone.confirm.page";
 import AuthPage from "./pages/auth/auth.page";
 import ChatsPage from "./pages/chats/chats.page";
 import ChatMessagesPage from "./pages/chat.messages.page/chat.messages.page";
+import PrivateRoute from "./components/private.route/private.route";
 
 const Router = () => {
 	return (
@@ -14,9 +15,9 @@ const Router = () => {
 				<Route element={<MainPage/>} path={"/start"}/>
 				<Route element={<AuthPage/>} path={"/auth"}/>
 				<Route element={<PhoneConfirmPage/>} path={"/phone-confirm"}/>
-				<Route element={<UserProfilePage/>} path={"/profile"}/>
-				<Route element={<ChatsPage/>} path={"/"}/>
-				<Route element={<ChatMessagesPage/>} path={"/:chatId"}/>
+				<Route element={<PrivateRoute children={<UserProfilePage/>}/>} path={"/profile"}/>
+				<Route element={<PrivateRoute children={<ChatsPage/>}/>} path={"/"}/>
+				<Route element={<PrivateRoute children={<ChatMessagesPage/>}/>} path={"/:chatId"}/>
 			</Routes>
 		</BrowserRouter>
 	);

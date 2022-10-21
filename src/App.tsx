@@ -11,15 +11,17 @@ const App = () => {
 	useEffect(() =>{
 		const authorizeUsingAccessToken = async () =>{
 			const user = await UserService.getMe();
-			if(user) UserStore.login(user);
+			console.log("get me")
+			if(user) return UserStore.login(user);
 		};
+
 		authorizeUsingAccessToken().finally(
 			() => {
-				new SocketClient();
 				setLoading(false);
+				if(UserStore.user) new SocketClient();
 			}
 		);
-	})
+	}, [])
 	return (
 		loading
 			?   <Loader/>

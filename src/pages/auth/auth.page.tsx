@@ -7,17 +7,16 @@ import PhoneInput from "../../components/phone.code.dropdown/phone.input";
 import { CountryMobileCodes } from "../../assets/country.mobile.codes";
 import AuthService from "../../api/services/auth.service";
 import { useNavigate } from "react-router";
+import BaseInput from "../../ui/base.input/base.input";
 
 const AuthPage = () => {
-	const [phone, setPhone] = useState<string>("");
-	const [countryCode, setCountryCode] = useState<keyof typeof CountryMobileCodes>("+380");
+	const [email, setEmail] = useState<string>("");
 	const navigate = useNavigate();
 
 	const login = async () =>{
-		if(phone.length === 0 || !countryCode) return;
-
-		const loginResult = await AuthService.login(`${countryCode}${phone}`);
-		navigate(`/phone-confirm?code=${loginResult.code}&userId=${loginResult.userId}`);
+		if(email.length === 0) return;
+		const loginResult = await AuthService.login(email);
+		navigate(`/phone-confirm?&userId=${loginResult.userId}`);
 	};
 
 	return (
@@ -26,8 +25,11 @@ const AuthPage = () => {
 			<p className={"phone-description-text"}><span>Enter Your Phone Number</span><br/>Please confirm your country code and enter your phone number</p>
 			<img src={womenSit} alt="Women" className={"women"}/>
 			<img src={boySit} alt="Boy" className={"boy"}/>
-			<div className={"phone-input-area"}>
-				<PhoneInput setPhone={setPhone} setCountryCode={setCountryCode} countryCode={countryCode}/>
+			<div className={"email-input-area"}>
+				<BaseInput
+					placeholder={"Email"}
+					onChange={(e) => setEmail(e.currentTarget.value)}
+				/>
 			</div>
 			<BaseButton
 				style={{margin:"auto auto 115px auto"}}

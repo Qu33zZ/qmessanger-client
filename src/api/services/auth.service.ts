@@ -2,9 +2,9 @@ import { $api } from "../axios.default.instance";
 import { ILoginResponse } from "../../interfaces/ILogin.response";
 
 class AuthService{
-	async login(phoneNumber:string){
+	async login(email:string){
 		try{
-			const response = await $api.post("/auth/login", {phoneNumber});
+			const response = await $api.post("/auth/login", {email});
 			if(response.status === 200){
 				return response.data;
 			}else return null;
@@ -14,7 +14,8 @@ class AuthService{
 		}
 	};
 
-	async refresh(){
+	//refresh access token
+	async refresh():Promise<ILoginResponse | null>{
 		try{
 			const response = await $api.post("/auth/refresh");
 			if(response.status === 200){
@@ -25,7 +26,8 @@ class AuthService{
 			return null;
 		}
 	}
-	//confirm login using code from sms-verification
+
+	//confirm login using code from email-verification
 	async confirmLogin(userId:string, code:string):Promise<ILoginResponse | null>{
 		try {
 			const response = await $api.post<ILoginResponse>(`/auth/confirmLogin/${userId}/${code}`);
