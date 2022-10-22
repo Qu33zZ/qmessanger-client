@@ -1,0 +1,16 @@
+.user-icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: 55px;
+
+    margin: 0 10px 0 10px;
+
+    cursor: pointer;
+}
+
+.user-icon p.user-name-and-surname{
+    margin-left: 10px;
+}

@@ -28,6 +28,11 @@ class ChatsStore{
 		this.chats = formatedChats;
 	};
 
+	addChat(chat:IChatFromAPI):void{
+		const [formatedChat] = this.formatChatsFromApi([chat]).values();
+		this.chats.set(formatedChat.id, formatedChat);
+	};
+
 	deleteMessage(message:Message){
 		this.chats.get(message.chat.id)?.messages?.delete(message.id);
 	}

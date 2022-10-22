@@ -27,6 +27,18 @@ class UserService{
 			return null;
 		}
 	};
+
+	async lookForUsersByUsername(username:string):Promise<IUser[]>{
+		try{
+			const usersResponse = await $authorizedApi.get<IUser[]>(`/users/${username}`);
+			if(usersResponse.status === 200){
+				return usersResponse.data;
+			}
+			return [];
+		}catch{
+			return [];
+		}
+	};
 }
 
 export default new UserService();
