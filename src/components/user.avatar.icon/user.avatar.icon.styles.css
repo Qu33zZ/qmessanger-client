@@ -1,0 +1,17 @@
+.user-avatar-icon, .user-avatar-icon-with-name{
+    height: 50px;
+    width: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+}
+
+.user-avatar-icon-with-name{
+    background-color: #375FFF;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}

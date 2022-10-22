@@ -2,10 +2,10 @@ div.chats-search{
     display: flex;
     align-items: center;
 
-    width: 100%;
+    width: 95%;
     height: 35px;
 
-    margin-bottom: 15px;
+    margin: 0 auto 15px auto;
     padding: 0 10px 0 10px;
 
     background: #152033;
