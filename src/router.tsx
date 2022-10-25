@@ -14,7 +14,7 @@ const Router = () => {
 			<Routes>
 				<Route element={<MainPage/>} path={"/start"}/>
 				<Route element={<AuthPage/>} path={"/auth"}/>
-				<Route element={<PhoneConfirmPage/>} path={"/phone-confirm"}/>
+				<Route element={<PhoneConfirmPage/>} path={"/w-confirm"}/>
 				<Route element={<PrivateRoute children={<UserProfilePage/>}/>} path={"/profile"}/>
 				<Route element={<PrivateRoute children={<ChatsPage/>}/>} path={"/"}/>
 				<Route element={<PrivateRoute children={<ChatMessagesPage/>}/>} path={"/:chatId"}/>

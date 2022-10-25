@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { IMessage } from "../interfaces/IMessage";
 import { Message } from "../objects/message";
 import ChatsStore from "../store/chats.store";
+import { IChatFromAPI } from "../interfaces/IChatFromAPI";
 
 class SocketClient{
 	readonly socket: Socket;
@@ -25,6 +26,8 @@ class SocketClient{
 	setupEvents(){
 		this.socket.on("message", this.handleNewMessage);
 		this.socket.on("messageDelete", this.handleMessageDelete);
+
+		this.socket.on("chatCreate", this.handleNewChat);
 	}
 
 	async handleNewMessage(message:IMessage){
@@ -34,9 +37,12 @@ class SocketClient{
 	};
 
 	async handleMessageDelete(message:IMessage){
-		console.log("Deleteing", message);
 		const messageObject = new Message(message);
 		await messageObject.delete();
+	}
+
+	async handleNewChat(chat:IChatFromAPI){
+		ChatsStore.addChat(chat);
 	}
 }
 

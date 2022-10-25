@@ -5,24 +5,26 @@ import "./user.profile.styles.css";
 import BaseButton from "../../ui/base.button/base.button";
 import sprite from "../../assets/spite.svg";
 import UserService from "../../api/services/user.service";
+import CloseButton from "../../ui/close.button/close.button";
+import { useNavigate } from "react-router";
 
 const UserProfilePage = () => {
+	const navigate = useNavigate();
 	const user = UserStore.user;
 	const [name, setName] = useState<string>(user?.name || "");
 	const [surname, setSurname] = useState<string>(user?.surname || "");
+	const [username, setUsername] = useState<string>(user?.username || "");
 
 	const editUserProfile = async () =>{
-		console.log("edit")
-		console.log(name, surname, "saved", user?.name, user?.surname)
 		if(name.length === 0 || (name === user?.name && user?.surname === surname)) return;
 
-		console.log("send request")
-		const updatedUser = await UserService.editMe(name, surname);
+		const updatedUser = await UserService.editMe({name, surname, username});
 		if(updatedUser) UserStore.login(updatedUser);
-
 	};
+
 	return (
 		<div className={"base-page"}>
+			<CloseButton onClick={() =>{navigate("/")}}/>
 			<p className={"profile-page-title"}>Your Profile</p>
 			<div className={"inputs-area"}>
 				<div className={"user-avatar-input"}>
@@ -31,6 +33,7 @@ const UserProfilePage = () => {
 					</svg>
 				</div>
 				<BaseInput placeholder={"Name*"} defaultValue={name} onChange={(e) => setName(e.currentTarget.value)}/>
+				<BaseInput placeholder={"Username*"} defaultValue={username} onChange={(e) => setUsername(e.currentTarget.value)}/>
 				<BaseInput placeholder={"Surname"} defaultValue={surname} onChange={(e) => setSurname(e.currentTarget.value)}/>
 			</div>
 			<BaseButton

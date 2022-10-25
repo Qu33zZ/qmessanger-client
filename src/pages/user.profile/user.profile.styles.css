@@ -3,8 +3,12 @@ div.inputs-area{
     flex-direction: column;
     margin: 0 auto 0 auto;
 }
-div.inputs-area input:last-child{
+div.inputs-area input{
     margin-top: 20px;
+}
+
+div.inputs-area input:first-child{
+    margin-top: 0;
 }
 
 p.profile-page-title{

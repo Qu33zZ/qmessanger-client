@@ -1,4 +1,4 @@
-import React, { useRef, MouseEvent, useState, SetStateAction } from "react";
+import React, { MouseEvent, SetStateAction } from "react";
 import { Message as MessageObject} from "../../objects/message";
 import UserStore from "../../store/user.store";
 import "./message.styles.css";

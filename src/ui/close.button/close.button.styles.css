@@ -1,0 +1,19 @@
+button.close-button{
+    width: fit-content;
+    height: fit-content;
+
+    background: transparent;
+    border: none;
+
+    /*move to top right corner*/
+    margin: 15px 15px auto auto;
+
+    cursor: pointer;
+}
+
+button.close-button svg{
+    width: 28px;
+    height: 28px;
+
+    fill: white;
+}

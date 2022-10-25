@@ -1,5 +1,6 @@
 import { $authorizedApi } from "../axios.auth.instance";
 import { IUser } from "../../interfaces/IUser";
+import { IUpdateUserDTO } from "../../interfaces/update.user.dto";
 
 class UserService{
 	async getMe():Promise<IUser | null>{
@@ -15,9 +16,9 @@ class UserService{
 		}
 	};
 
-	async editMe(name:string, surname:string):Promise<IUser | null>{
+	async editMe(newUser:IUpdateUserDTO):Promise<IUser | null>{
 		try{
-			const userResponse = await $authorizedApi.put<IUser>("/users/@me", {name, surname:surname || null});
+			const userResponse = await $authorizedApi.put<IUser>("/users/@me", newUser);
 			if(userResponse.status === 200){
 				return userResponse.data;
 			}
