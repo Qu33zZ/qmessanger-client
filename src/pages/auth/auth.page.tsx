@@ -1,10 +1,8 @@
+import "./auth.page.styles.css";
 import React, { useState } from "react";
 import womenSit from "../../assets/women_sit.png";
 import boySit from "../../assets/boy_sit.png";
 import BaseButton from "../../ui/base.button/base.button";
-import "./auth.page.styles.css";
-import PhoneInput from "../../components/phone.code.dropdown/phone.input";
-import { CountryMobileCodes } from "../../assets/country.mobile.codes";
 import AuthService from "../../api/services/auth.service";
 import { useNavigate } from "react-router";
 import BaseInput from "../../ui/base.input/base.input";
@@ -20,9 +18,9 @@ const AuthPage = () => {
 	};
 
 	return (
-		<div className={"base-page main-page"}>
+		<div className={"base-page auth-page"}>
 			<h1 className={"page-title-name"}>QMessanger</h1>
-			<p className={"phone-description-text"}><span>Enter Your Phone Number</span><br/>Please confirm your country code and enter your phone number</p>
+			<p className={"email-description-text"}><span>Enter your email</span><br/>We will send you a verification number to your email</p>
 			<img src={womenSit} alt="Women" className={"women"}/>
 			<img src={boySit} alt="Boy" className={"boy"}/>
 			<div className={"email-input-area"}>

@@ -11,9 +11,10 @@ const MainPage = () => {
 	return (
 		<div className={"base-page main-page"}>
 			<h1 className={"page-title-name"}>QMessanger</h1>
+			<img src={boySit} alt="Boy" className={"boy"}/>
 			<p className={"description-text"}>Most modern messagner in the whole world</p>
 			<img src={womenSit} alt="Women" className={"women"}/>
-			<img src={boySit} alt="Boy" className={"boy"}/>
+
 
 			<BaseButton
 				onClick={(e) => {e.preventDefault(); navigate("/auth")}}
