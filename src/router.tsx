@@ -7,6 +7,8 @@ import AuthPage from "./pages/auth/auth.page";
 import ChatsPage from "./pages/chats/chats.page";
 import ChatMessagesPage from "./pages/chat.messages.page/chat.messages.page";
 import PrivateRoute from "./components/private.route/private.route";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Router = () => {
 	return (
@@ -19,6 +21,15 @@ const Router = () => {
 				<Route element={<PrivateRoute children={<ChatsPage/>}/>} path={"/"}/>
 				<Route element={<PrivateRoute children={<ChatMessagesPage/>}/>} path={"/:chatId"}/>
 			</Routes>
+			<ToastContainer
+				containerId={"main-container"}
+				position="bottom-right"
+				autoClose={5000}
+				newestOnTop={true}
+				closeOnClick
+				pauseOnHover
+				theme="dark"
+			/>
 		</BrowserRouter>
 	);
 };
