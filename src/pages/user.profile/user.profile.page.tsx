@@ -59,8 +59,9 @@ const UserProfilePage = observer(() => {
 			<BaseButton
 				style={{margin:"auto auto 100px auto"}}
 				onClick={editUserProfile}
-			>Save Changes</BaseButton>
-
+			>
+				Save Changes
+			</BaseButton>
 		</div>
 	);
 });

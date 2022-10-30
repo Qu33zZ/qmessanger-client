@@ -34,21 +34,30 @@ const ChatsList = () => {
 
 	// search results for chats search
 	const chatsFromSearchElement =
-		chatsFromSearch?.length === 0 ? (
-			<p>Chats not found</p>
-		) : (
-			chatsFromSearch?.map((chat) => <ChatIcon chat={chat} key={chat.id} />)
-		);
+		<div className={"chats-or-users-search-result"}>
+			{
+				chatsFromSearch?.length === 0 ? (
+					<p className={"not-found"}>Chats not found</p>
+				) : (
+					chatsFromSearch?.map((chat) => <ChatIcon chat={chat} key={chat.id} />)
+				)
+			}
+		</div>
 
 	// search results for users search
 	const usersFromSearchElement =
-		usersFromSearch?.length === 0 ? (
-			<p>Users not found</p>
-		) : (
-			usersFromSearch?.map((user) => (
-				<UserIcon user={user}/>
-			))
-		);
+		<div className="chats-or-users-search-result">
+			{
+				usersFromSearch?.length === 0 ? (
+					<p className={"not-found"}>Users not found</p>
+				) : (
+					usersFromSearch?.map((user) => (
+						<UserIcon user={user}/>
+					))
+				)
+			}
+		</div>
+
 
 	// element with search results for chats OR users search
 	const displaySearchElement = (

@@ -1,10 +1,12 @@
-import React, { SetStateAction, useEffect, useLayoutEffect, useRef } from "react";
+import React, { SetStateAction, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Message } from "../../objects/message";
 import "./message.menu.styles.css";
 import UserStore from "../../store/user.store";
 import sprite from "../../assets/spite.svg";
 import { IMessageMenuState } from "../chat.messages/chat.messages";
 import useOuterClick from "../../hooks/outerClick";
+import { useAsObservableSource } from "mobx-react-lite";
+import Loader from "../../ui/loader/loader";
 
 interface IMessageMenuProps{
 	message:Message;
@@ -15,26 +17,23 @@ interface IMessageMenuProps{
 
 const MessageMenu:React.FC<IMessageMenuProps> = ({message, yPos, xPos, setMessageMenu}) => {
 	const outerClickRef = useOuterClick(() => setMessageMenu(messageMenuState => ({...messageMenuState, message:null})));
+	const positionRef = useRef<{x:number, y:number}>({x:xPos, y:yPos});
+	const [loaded, setLoaded] = useState<boolean>(false);
 
-	useLayoutEffect(() => {
-		if (outerClickRef.current) {
-			const verticalMiddle =
-				window.innerHeight -
-				(outerClickRef.current.parentElement?.offsetHeight || 0) +
-				(outerClickRef.current.parentElement?.offsetHeight || 0)/2;
-			const horizontalMiddle = window.innerWidth -
-				(outerClickRef.current.parentElement?.offsetWidth || 0) +
-				(outerClickRef.current.parentElement?.offsetWidth || 0)/2;
-			if(yPos > verticalMiddle) yPos -= outerClickRef.current.offsetHeight;
-			if(xPos > horizontalMiddle) xPos -= outerClickRef.current.offsetWidth;
-		}
-	}, []);
-	if(outerClickRef.current){
+	useEffect(() => {
+		const verticalMiddle = window.innerHeight/2
+		const horizontalMiddle = window.innerWidth/2;
+		console.log("Vertical middle --- ", verticalMiddle, "Рorizontal middle --- ", horizontalMiddle)
+		if(yPos > verticalMiddle) positionRef.current.y -= 125;
+		if(xPos > horizontalMiddle) positionRef.current.x -= 200;
+		setLoaded(true);
+	});
 
+	if(!loaded){
+		return <Loader/>;
 	}
-
 	return (
-		<ul ref={outerClickRef} className={"message-menu"} style={{top:yPos, left:xPos}}>
+		<ul ref={outerClickRef} className={"message-menu"} style={{top:positionRef.current.y, left:positionRef.current.x}}>
 			{
 				message.author.id === UserStore.user?.id &&
 				<li
