@@ -11,6 +11,8 @@ import Loader from "../../ui/loader/loader";
 import { IChat } from "../../interfaces/IChat";
 import { IUser } from "../../interfaces/IUser";
 import UserIcon from "../user.icon/user.icon";
+import UserAvatarIcon from "../user.avatar.icon/user.avatar.icon";
+import { Link } from "react-router-dom";
 
 const ChatsList = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -67,11 +69,13 @@ const ChatsList = () => {
 	return (
 		<div className={"chats-list-block"}>
 			<div className={"chats-block-header"}>
-				<ChatImage
-					avatar={UserStore.user?.avatar}
-					name={UserStore.user?.name || ""}
-					surname={UserStore.user?.surname || ""}
-				/>
+				<Link to={"/profile"}>
+					<UserAvatarIcon
+						avatar={UserStore.user?.avatar}
+						name={UserStore.user?.name || ""}
+						surname={UserStore.user?.surname || ""}
+					/>
+				</Link>
 				<p className={"chats-block-title"}>Chats</p>
 				<svg className="add-chat-icon">
 					<use href={sprite + "#add-chat-icon"}/>

@@ -1,4 +1,33 @@
-p.phone-description-text{
+div.auth-page h1.page-title-name{
+    display: block;
+    font-weight: 700;
+    font-size: 58px;
+
+    color: white;
+
+    text-align: center;
+    margin: 5% auto 0 auto;
+}
+div.auth-page img.women{
+    position: absolute;
+
+    width: 19.38vw;
+    /*height: 52.22vh;*/
+    left: 5%;
+    bottom: 15%;
+}
+div.auth-page img.boy{
+    position: absolute;
+
+    right: 5%;
+    top: 7%;
+
+    width: 14.22vw;
+    /*height: 22.87vh;*/
+}
+
+
+div.auth-page p.email-description-text{
     width: 40%;
     text-align: center;
 
@@ -6,17 +35,57 @@ p.phone-description-text{
 
     font-size: 26px;
     font-weight: 200;
+
+    line-height: 32px;
 }
 
-p.phone-description-text span{
+div.auth-page p.email-description-text span{
     font-size: 32px;
     font-weight: bold;
 }
 
-.email-input-area{
+div.auth-page .email-input-area{
     margin: auto;
 }
 
+
+@media screen and (max-width: 766px) {
+    div.auth-page img.boy, div.auth-page img.women{
+        display: none;
+    }
+
+    div.auth-page p.email-description-text{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    div.auth-page h1.page-title-name{
+        font-size: 48px;
+    }
+
+    div.auth-page p.email-description-text span{
+        font-size: 26px;
+    }
+
+    div.auth-page p.description-text{
+        width: 85%;
+    }
+}
+
+
+@media only screen and (max-width: 320px) {
+    div.auth-page h1.page-title-name {
+        font-size: 38px;
+        margin: auto;
+    }
+
+    div.auth-page p.description-text {
+        width: 80%;
+        font-size: 26px;
+        margin: auto;
+    }
+}
 
 
 

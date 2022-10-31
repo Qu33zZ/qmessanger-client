@@ -43,7 +43,7 @@ const UserProfilePage = observer(() => {
 	};
 
 	return (
-		<div className={"base-page"}>
+		<div className={"base-page user-profile-page"}>
 			<CloseButton onClick={() =>{navigate("/")}}/>
 			<p className={"profile-page-title"}>Your Profile</p>
 			<div className={"inputs-area"}>
@@ -57,7 +57,7 @@ const UserProfilePage = observer(() => {
 				<BaseInput placeholder={"Surname"} defaultValue={surname} onChange={(e) => setSurname(e.currentTarget.value)}/>
 			</div>
 			<BaseButton
-				style={{margin:"auto auto 100px auto"}}
+				style={{margin:"auto"}}
 				onClick={editUserProfile}
 			>
 				Save Changes

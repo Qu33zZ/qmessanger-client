@@ -2,7 +2,7 @@ div.main-page{
     position: relative;
 }
 
-h1.page-title-name{
+div.main-page h1.page-title-name{
     display: block;
     font-weight: 700;
     font-size: 58px;
@@ -13,7 +13,7 @@ h1.page-title-name{
     margin: 5% auto 0 auto;
 }
 
-p.description-text{
+div.main-page p.description-text{
     width: 40%;
     text-align: center;
 
@@ -23,7 +23,7 @@ p.description-text{
     font-weight: 500;
 }
 
-img.women{
+div.main-page img.women{
     position: absolute;
 
     width: 19.38vw;
@@ -32,7 +32,7 @@ img.women{
     bottom: 15%;
 }
 
-img.boy{
+div.main-page img.boy{
     position: absolute;
 
     right: 5%;
@@ -40,7 +40,56 @@ img.boy{
 
     width: 14.22vw;
     /*height: 22.87vh;*/
+}
+
+@media only screen and (max-width: 1023px) {
+    div.main-page img.women{
+        display: none;
+    }
+
+    div.main-page img.boy{
+        position: static;
+        display: block;
+
+        width: 35%;
+        max-width: 200px;
+        min-width: 150px;
+        margin: 0 auto 0 auto;
+    }
+    div.main-page h1.page-title-name{
+        font-size: 62px;
+        margin: auto;
+    }
+
+    div.main-page p.description-text{
+        width: 80%;
+        margin: auto;
+    }
+}
 
 
+@media only screen and (max-width: 400px){
+    div.main-page h1.page-title-name{
+        font-size: 48px;
+        margin: auto;
+    }
 
+    div.main-page p.description-text{
+        width: 85%;
+    }
+
+}
+
+
+@media only screen and (max-width: 320px){
+    div.main-page h1.page-title-name{
+        font-size: 38px;
+        margin: auto;
+    }
+
+    div.main-page p.description-text{
+        width: 85%;
+        font-size: 26px;
+        margin: auto;
+    }
 }

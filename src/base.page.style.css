@@ -33,3 +33,7 @@ div.base-page{
 .scroll-lock{
     overflow: hidden;
 }
+
+.body{
+    min-width: 320px;
+}

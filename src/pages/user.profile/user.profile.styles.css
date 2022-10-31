@@ -1,17 +1,17 @@
-div.inputs-area{
+div.user-profile-page div.inputs-area{
     display: flex;
     flex-direction: column;
     margin: 0 auto 0 auto;
 }
-div.inputs-area input{
+div.user-profile-page  div.inputs-area input{
     margin-top: 20px;
 }
 
-div.inputs-area input:first-child{
+div.user-profile-page  div.inputs-area input:first-child{
     margin-top: 0;
 }
 
-p.profile-page-title{
+div.user-profile-page  p.profile-page-title{
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 700;
@@ -23,7 +23,7 @@ p.profile-page-title{
     margin: 3% auto 0 auto;
 }
 
-div.user-avatar-input{
+div.user-profile-page  div.user-avatar-input{
     cursor: pointer;
     margin: 10% auto 10% auto;
     width: 120px;
@@ -38,7 +38,22 @@ div.user-avatar-input{
 }
 
 
-div.user-avatar-input svg{
+div.user-profile-page  div.user-avatar-input svg{
     width: 80%;
     height: 80%;
+}
+
+
+@media only screen and (max-width: 400px){
+    div.user-profile-page p.profile-page-title{
+        font-size: 52px;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    div.user-profile-page p.profile-page-title{
+        font-size: 46px;
+        margin: auto;
+    }
 }

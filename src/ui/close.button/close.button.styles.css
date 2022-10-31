@@ -1,4 +1,5 @@
 button.close-button{
+    display: flex;
     width: fit-content;
     height: fit-content;
 
@@ -6,7 +7,7 @@ button.close-button{
     border: none;
 
     /*move to top right corner*/
-    margin: 15px 15px auto auto;
+    margin: 15px 15px  0 auto;
 
     cursor: pointer;
 }
