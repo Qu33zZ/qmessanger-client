@@ -7,8 +7,10 @@ import sprite from "../../assets/spite.svg";
 import UserService from "../../api/services/user.service";
 import CloseButton from "../../ui/close.button/close.button";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { observer } from "mobx-react-lite";
 
-const UserProfilePage = () => {
+const UserProfilePage = observer(() => {
 	const navigate = useNavigate();
 	const user = UserStore.user;
 	const [name, setName] = useState<string>(user?.name || "");
@@ -16,10 +18,28 @@ const UserProfilePage = () => {
 	const [username, setUsername] = useState<string>(user?.username || "");
 
 	const editUserProfile = async () =>{
-		if(name.length === 0 || (name === user?.name && user?.surname === surname)) return;
+		const profileAlreadyUpToDate = () => {
+			return name === user?.name && surname === user?.surname && username === user?.username;
+		};
+
+		if(!name || name.length === 0){
+			return toast("Name can not be empty", {type:"error"});
+		}
+		if(!username || username.length === 0){
+			return toast("Username can not be empty", {type:"error"});
+		}
+
+		if(profileAlreadyUpToDate()){
+			return toast("Your profile is up to date", {type:"info"})
+		};
 
 		const updatedUser = await UserService.editMe({name, surname, username});
-		if(updatedUser) UserStore.login(updatedUser);
+		if(updatedUser){
+			UserStore.login(updatedUser);
+			toast("Your profile was successfully updated", {type:"success"});
+		}else{
+			toast("Error happened while updating your profile", {type:"error"});
+		}
 	};
 
 	return (
@@ -39,10 +59,11 @@ const UserProfilePage = () => {
 			<BaseButton
 				style={{margin:"auto auto 100px auto"}}
 				onClick={editUserProfile}
-			>Save Changes</BaseButton>
-
+			>
+				Save Changes
+			</BaseButton>
 		</div>
 	);
-};
+});
 
 export default UserProfilePage;

@@ -19,7 +19,7 @@ const ChatIcon:React.FC<{chat:IChat}> = observer(({chat}) => {
 			<div className={"chat-icon-content"}>
 				<ChatImage avatar={member.avatar} surname={member.surname} name={member.name}/>
 				<div className="chat-name-and-last-message">
-					<p className={"chat-name"}>{`${member.name} ${(member.surname || "")}`}</p>
+					<p className={"chat-name"}>{`${member.name} ${(member.surname ?? "")}`}</p>
 					<p className={"last-message"}>
 						{latestMessage?.content}
 					</p>

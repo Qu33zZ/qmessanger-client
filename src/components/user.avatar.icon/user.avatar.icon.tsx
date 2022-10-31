@@ -15,7 +15,7 @@ const UserAvatarIcon:React.FC<IUserAvatarProps> = ({avatar, name, surname}) => {
 	}
 	return (
 		<div className={"user-avatar-icon-with-name"}>
-			<p>{name.charAt(0)}{surname?.charAt(0)}</p>
+			<p>{name.charAt(0)}{surname?.charAt(0) ?? ""}</p>
 		</div>
 	);
 };

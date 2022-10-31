@@ -12,6 +12,7 @@ interface IMessageProps{
 const Message:React.FC<IMessageProps> = ({message, setMenuState}) => {
 	const handleMenuOpen = (e:MouseEvent<HTMLDivElement>) =>{
 		e.preventDefault();
+		console.log("X --- ", e.pageX, "Y --- ", e.pageY);
 		setMenuState({
 			xPos:e.pageX,
 			yPos:e.pageY,
