@@ -1,4 +1,5 @@
 import React from "react";
+import { CONFIG } from "../../config";
 import "./user.avatar.icon.styles.css";
 
 interface IUserAvatarProps{
@@ -10,7 +11,7 @@ interface IUserAvatarProps{
 const UserAvatarIcon:React.FC<IUserAvatarProps> = ({avatar, name, surname}) => {
 	if(avatar){
 		return (
-			<img src="" alt={`{name}'s avatar`}/>
+			<img className={"user-avatar-icon"} src={`${CONFIG.api.server_url}${CONFIG.api.static_base_endpoint}/users/avatars/${avatar}`} alt={`{name}'s avatar`}/>
 		)
 	}
 	return (

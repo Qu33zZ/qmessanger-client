@@ -30,7 +30,7 @@ const MessageMenu:React.FC<IMessageMenuProps> = ({message, yPos, xPos, setMessag
 	});
 
 	if(!loaded){
-		return <Loader/>;
+		return <></>;
 	}
 	return (
 		<ul ref={outerClickRef} className={"message-menu"} style={{top:positionRef.current.y, left:positionRef.current.x}}>

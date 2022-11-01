@@ -9,10 +9,13 @@ import CloseButton from "../../ui/close.button/close.button";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { observer } from "mobx-react-lite";
+import UploadAvatarPopup from "../../components/upload.avatar.popup/upload.avatar.popup";
 
 const UserProfilePage = observer(() => {
 	const navigate = useNavigate();
 	const user = UserStore.user;
+	const [avatarPopupOpened, setAvatarPopupOpened] = useState<boolean>(false);
+	const [avatar, setAvatar] = useState<string>();
 	const [name, setName] = useState<string>(user?.name || "");
 	const [surname, setSurname] = useState<string>(user?.surname || "");
 	const [username, setUsername] = useState<string>(user?.username || "");
@@ -47,7 +50,7 @@ const UserProfilePage = observer(() => {
 			<CloseButton onClick={() =>{navigate("/")}}/>
 			<p className={"profile-page-title"}>Your Profile</p>
 			<div className={"inputs-area"}>
-				<div className={"user-avatar-input"}>
+				<div className={"user-avatar-input"} onClick={() =>{setAvatarPopupOpened(true)}}>
 					<svg>
 						<use href={sprite+"#profile"}/>
 					</svg>
@@ -56,6 +59,11 @@ const UserProfilePage = observer(() => {
 				<BaseInput placeholder={"Username*"} defaultValue={username} onChange={(e) => setUsername(e.currentTarget.value)}/>
 				<BaseInput placeholder={"Surname"} defaultValue={surname} onChange={(e) => setSurname(e.currentTarget.value)}/>
 			</div>
+			<UploadAvatarPopup 
+				opened={avatarPopupOpened}
+				setOpened={setAvatarPopupOpened}
+				setAvatar = {setAvatar}
+			/>
 			<BaseButton
 				style={{margin:"auto"}}
 				onClick={editUserProfile}

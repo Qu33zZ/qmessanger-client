@@ -1,0 +1,23 @@
+div.drag-and-drop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: #375fff85 2px dashed;
+
+    height: 40%;
+    width: 60%;
+
+    min-width: 120px;
+    min-height: 80px;
+}
+
+div.drag-and-drop.active{
+    border: #375fff 3px dashed;
+}
+
+div.drag-and-drop p{
+    font-size: 18px;
+    font-weight: 500;
+}
+
