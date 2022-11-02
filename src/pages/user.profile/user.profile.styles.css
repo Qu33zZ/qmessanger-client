@@ -20,7 +20,7 @@ div.user-profile-page  p.profile-page-title{
 
     color: #F7F7FC;
 
-    margin: 3% auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 
 div.user-profile-page  div.user-avatar-input{
@@ -43,6 +43,12 @@ div.user-profile-page  div.user-avatar-input svg{
     height: 80%;
 }
 
+img.user-avatar-image{
+    width: 120px;
+    height: 120px;
+
+    border-radius: 40px;
+}
 
 @media only screen and (max-width: 400px){
     div.user-profile-page p.profile-page-title{

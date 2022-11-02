@@ -1,0 +1,23 @@
+div.popup{
+    z-index: 10000;
+    display: none;
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    top: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    backdrop-filter: blur(5px);
+  
+    background-color: rgba(17,24,39, 0.4);
+
+}
+
+div.popup.opened{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

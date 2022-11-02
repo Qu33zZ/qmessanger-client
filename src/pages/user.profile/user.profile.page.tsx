@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BaseInput from "../../ui/base.input/base.input";
 import UserStore from "../../store/user.store";
 import "./user.profile.styles.css";
@@ -10,19 +10,25 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { observer } from "mobx-react-lite";
 import UploadAvatarPopup from "../../components/upload.avatar.popup/upload.avatar.popup";
+import { CONFIG } from "../../config";
 
 const UserProfilePage = observer(() => {
 	const navigate = useNavigate();
 	const user = UserStore.user;
 	const [avatarPopupOpened, setAvatarPopupOpened] = useState<boolean>(false);
-	const [avatar, setAvatar] = useState<string>();
+	const [avatar, setAvatar] = useState<File | undefined>(undefined);
+	const [currentAvatar, setCurrentAvatar] = useState<string | null>(user?.avatar ? `${CONFIG.api.server_url}${CONFIG.api.static_base_endpoint}/users/avatars/${user.avatar}`: null);
 	const [name, setName] = useState<string>(user?.name || "");
 	const [surname, setSurname] = useState<string>(user?.surname || "");
 	const [username, setUsername] = useState<string>(user?.username || "");
 
+	useEffect(() =>{
+		if(avatar) setCurrentAvatar(URL.createObjectURL(avatar));
+	}, [avatar]);
+
 	const editUserProfile = async () =>{
 		const profileAlreadyUpToDate = () => {
-			return name === user?.name && surname === user?.surname && username === user?.username;
+			return name === user?.name && surname === user?.surname && username === user?.username && !avatar;
 		};
 
 		if(!name || name.length === 0){
@@ -36,7 +42,7 @@ const UserProfilePage = observer(() => {
 			return toast("Your profile is up to date", {type:"info"})
 		};
 
-		const updatedUser = await UserService.editMe({name, surname, username});
+		const updatedUser = await UserService.editMe({name, surname, username, avatar});
 		if(updatedUser){
 			UserStore.login(updatedUser);
 			toast("Your profile was successfully updated", {type:"success"});
@@ -51,9 +57,15 @@ const UserProfilePage = observer(() => {
 			<p className={"profile-page-title"}>Your Profile</p>
 			<div className={"inputs-area"}>
 				<div className={"user-avatar-input"} onClick={() =>{setAvatarPopupOpened(true)}}>
-					<svg>
-						<use href={sprite+"#profile"}/>
-					</svg>
+					{
+						!currentAvatar
+							?
+								<svg>
+									<use href={sprite+"#profile"}/>
+								</svg>
+							: 	
+								<img src={currentAvatar} alt={`Avatar`} className={"user-avatar-image"}/>
+					}
 				</div>
 				<BaseInput placeholder={"Name*"} defaultValue={name} onChange={(e) => setName(e.currentTarget.value)}/>
 				<BaseInput placeholder={"Username*"} defaultValue={username} onChange={(e) => setUsername(e.currentTarget.value)}/>

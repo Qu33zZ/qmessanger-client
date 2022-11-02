@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import "./drag.and.drop.styles.css";
 
-const DragAndDrop = () => {
+
+interface IDragAndDropProps{
+    setImage:React.Dispatch<React.SetStateAction<File | null>>;
+}
+const DragAndDrop:React.FC<IDragAndDropProps> = ({setImage}) => {
     const [drag, setDrag] = useState<boolean>(false);
 
     const handleDragStart = (e:React.DragEvent<HTMLDivElement>) =>{
@@ -17,7 +21,7 @@ const DragAndDrop = () => {
     const dropHandler = (e:React.DragEvent<HTMLDivElement>) =>{
         e.preventDefault();
         const [file] = e.dataTransfer.files;
-        console.log(URL.createObjectURL(file));
+        setImage(file);
     };
 
     return (
