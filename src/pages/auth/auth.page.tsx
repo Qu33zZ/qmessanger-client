@@ -14,7 +14,7 @@ const AuthPage = () => {
 	const login = async () =>{
 		if(email.length === 0) return;
 		const loginResult = await AuthService.login(email);
-		navigate(`/phone-confirm?&userId=${loginResult.userId}`);
+		navigate(`/email-confirm?&userId=${loginResult.userId}`);
 	};
 
 	return (

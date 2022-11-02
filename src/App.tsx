@@ -11,7 +11,6 @@ const App = () => {
 	useEffect(() =>{
 		const authorizeUsingAccessToken = async () =>{
 			const user = await UserService.getMe();
-			console.log("get me")
 			if(user) return UserStore.login(user);
 		};
 
