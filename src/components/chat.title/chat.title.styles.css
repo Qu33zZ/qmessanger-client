@@ -15,8 +15,28 @@
 
     display: flex;
     align-self: center;
-    justify-content: space-between;
+    flex-direction: row;
 }
+
+.chat-title-block button.back-to-chats-button{
+    display: none;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+
+    padding-right: 15px;
+    border-right: 1px solid #152033;
+
+    cursor: pointer;
+}
+
+.chat-title-block button.back-to-chats-button svg{
+    transform: rotate(180deg);
+    fill: white;
+    width: 30px;
+    max-height:100%;
+}
+
 
 .chat-title{
     display: flex;
@@ -28,4 +48,15 @@
     font-weight: 500;
 
     margin-left: 10px;
+}
+
+@media screen and (max-width:585px) {
+    .chat-title-block{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .chat-title-block button.back-to-chats-button{
+        display: flex;
+    }
 }

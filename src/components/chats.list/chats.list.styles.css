@@ -16,7 +16,7 @@ div.chats-list-block{
 .chats-block-header{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+
     border-bottom: 1px solid #152033;
     padding: 15px 25px 15px 25px;
 }
@@ -25,12 +25,9 @@ div.chats-list-block{
     font-weight: 600;
     font-size: 18px;
     color: white;
+    margin-left: 5%;
 }
-.chats-block-header svg.add-chat-icon{
-    width: 24px;
-    height: 24px;
-    fill: white;
-}
+
 
 ul.chats-list{
     padding: 15px 0;
@@ -39,10 +36,27 @@ ul.chats-list{
 div.chats-list-block div.chats-or-users-search-result{
     width: 100%;
     height: 100%;
-    padding: 0 10px;
+    padding: 0 25px;
 }
 
 div.chats-list-block div.chats-or-users-search-result p.not-found{
     font-size: 16px;
     font-weight: 500;
+}
+
+
+@media screen and (max-width:768px) {
+    div.chats-list-block{
+       width: 100%;
+    }
+    .chats-block-header{
+        padding: 15px;
+    }
+
+    div.chats-list-block div.chats-or-users-search-result{
+        padding: 0 15px;
+    }
+    /* .chats-block-header, ul.chats-list{
+        display: none;
+    } */
 }

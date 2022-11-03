@@ -13,12 +13,13 @@ import { IUser } from "../../interfaces/IUser";
 import UserIcon from "../user.icon/user.icon";
 import UserAvatarIcon from "../user.avatar.icon/user.avatar.icon";
 import { Link } from "react-router-dom";
+import { BurgerMenu } from "../../ui/burger/burger.menu";
 
 const ChatsList = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [chatsFromSearch, setChatsFromSearch] = useState<IChat[] | null>(null);
 	const [usersFromSearch, setUsersFromSearch] = useState<IUser[] | null>(null);
-
+	
 	useEffect(() => {
 		const getChats = async () => {
 			const chats = await ChatsService.getChats();
@@ -77,9 +78,6 @@ const ChatsList = () => {
 					/>
 				</Link>
 				<p className={"chats-block-title"}>Chats</p>
-				<svg className="add-chat-icon">
-					<use href={sprite + "#add-chat-icon"}/>
-				</svg>
 			</div>
 			<ul className={"chats-list"}>
 				<ChatSearch setChatsFromSearch={setChatsFromSearch} setUsersFromSearch={setUsersFromSearch}/>

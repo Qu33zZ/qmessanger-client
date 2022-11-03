@@ -90,3 +90,9 @@ button.send-message svg.plane-icon{
 
     fill: #375FFF;
 }
+
+@media screen and (max-width:585px){
+    .message-input-area{
+        width: 100%;
+    }
+}

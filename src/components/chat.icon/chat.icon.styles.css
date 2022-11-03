@@ -43,3 +43,9 @@ p.last-message{
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
+@media screen and (max-width:768px) {
+    .chat-icon div.chat-icon-content, .chat-icon-active div.chat-icon-content{
+        padding: 0 15px;
+    }
+}
