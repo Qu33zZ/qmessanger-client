@@ -1,7 +1,6 @@
 import { $api } from "../axios.default.instance";
 import { ILoginResponse } from "../../interfaces/ILogin.response";
 import Cookies from "js-cookie";
-import { updateFor } from "typescript";
 
 class AuthService{
 	async login(email:string){
@@ -21,7 +20,7 @@ class AuthService{
 		const refreshToken = Cookies.get("refreshToken")
 		if(!refreshToken) return null;
 		try{
-			const response = await $api.post("/auth/refresh", null, {headers:{refreshToken}});
+			const response = await $api.post("/auth/refresh", null, {headers:{'refresh-token':refreshToken}});
 			if(response.status === 200){
 				return response.data;
 			}else return null;

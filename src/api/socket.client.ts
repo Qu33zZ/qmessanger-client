@@ -6,6 +6,8 @@ import { IMessage } from "../interfaces/IMessage";
 import { Message } from "../objects/message";
 import ChatsStore from "../store/chats.store";
 import { IChatFromAPI } from "../interfaces/IChatFromAPI";
+import { toast } from "react-toastify";
+import { runInAction } from "mobx";
 
 class SocketClient{
 	readonly socket: Socket;
@@ -20,20 +22,43 @@ class SocketClient{
 			}
 		);
 		this.socket = SOCKET;
-
+		this.connect();
 		this.setupEvents();
-	}
+	};
+
+	connect(){
+		const id = toast.loading("Connecting to the server", {position:"top-center"});
+		try{
+			this.socket.connect();
+			setTimeout(() =>{
+				toast.update(id, { render: "Successfully connected to the server", type: "success", isLoading: false, closeButton:true, autoClose:1000, position:"top-center"});
+				console.log("Connected");
+			}, 1500);
+		}catch{
+			toast.update(id, { render: "Unable connect to the server", type: "error", isLoading: false, closeButton:true, autoClose:1000, position:"top-center"});	
+		}
+
+	};
+
 	setupEvents(){
 		this.socket.on("message", this.handleNewMessage);
 		this.socket.on("messageDelete", this.handleMessageDelete);
-
 		this.socket.on("chatCreate", this.handleNewChat);
+		this.socket.on("disconnect", this.handleDisconnect);
+	};
+
+	handleDisconnect(){
+		toast("Disconnected from the web server", {type:"warning", position:"top-center"});
 	}
 
 	async handleNewMessage(message:IMessage){
 		const messageObject = new Message(message);
 		const messageChannelInStore = ChatsStore.chats.get(messageObject.chat.id);
-		if(messageChannelInStore) messageChannelInStore.addNewMessage(messageObject);
+		if(messageChannelInStore){
+			runInAction(() =>{
+				messageChannelInStore.addNewMessage(messageObject);
+			})
+		} 
 	};
 
 	async handleMessageDelete(message:IMessage){

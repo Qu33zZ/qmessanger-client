@@ -48,8 +48,4 @@ export class Chat implements IChat{
 		this.messages.set(message.id, message);
 		ChatsStore.editChatMessages(this.id, this.messages);
 	}
-
-	setActiveView(){
-		// ChatsStore.setActiveChat(this);
-	}
 }
