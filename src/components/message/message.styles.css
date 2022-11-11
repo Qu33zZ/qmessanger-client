@@ -1,65 +1,121 @@
-.message, .my-message{
+.message-bubble{
     display: flex;
-    align-items: center;
-    align-items: flex-start;
     flex-direction: row;
 
     width: fit-content;
     max-width: 45%;
 
-    padding: 5px 10px 5px 10px;
-
     margin-top: 10px;
 }
 
-.message{
-    align-self: flex-start;
-    background: #152033;
-    border-radius: 16px 16px 16px 0;
+
+.message-bubble.my-message{
+    align-self: flex-end;
+    margin-right: 30px;
 }
 
-.my-message{
-    align-self: flex-end;
+
+.message-bubble.not-my-message{
+    margin-left: 30px;
+    align-items: flex-start;
+}
+
+
+.message-bubble.first-message-from-user{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.message-bubble .message-content{
+    display: flex;
+    width: 100%;
+    padding: 5px 10px 5px 10px;
+}
+
+
+.message-bubble.my-message .message-content{
     background: #375FFF;
     border-radius: 16px 16px 0 16px;
 }
 
-.message-reply-container{
-    margin-top: 20px;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.message-reply-container.me-replying{
-    align-self: flex-end;
-}
-
-.reply{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    width: fit-content;
-    max-width: 45%;
-
-    padding: 15px;
-
-
-
+.message-bubble.not-my-message .message-content{
     background: #152033;
+    border-radius: 16px 16px 16px 0;
+}
+
+
+.message-bubble .user-avatar-icon, .message-bubble .user-avatar-icon-with-name{
+    min-width: 30px;
+    min-height: 30px;
+    max-width: 30px;
+    max-height: 30px;
+
+    border-radius: 50%;
+    margin-bottom: auto; 
+}
+
+.message-bubble.my-message .user-avatar-icon, .message-bubble.my-message  .user-avatar-icon-with-name{
+    margin-left: 5px;
+}
+
+
+.message-bubble.not-my-message .user-avatar-icon, .message-bubble.not-my-message  .user-avatar-icon-with-name{
+    margin-right: 5px;
+}
+
+
+/* replies */
+
+.message-bubble .reply-container{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.message-bubble .reply-container .replied-to-message-content{
+    display: flex;
+    flex-direction: column;
     border-radius: 4px;
+
+    padding: 10px;
+    background-color: #152033;
 }
 
-.message-reply-container.me-replying .reply{
-    align-self: flex-end;
-    border-right: 4px solid white ;
+
+.message-bubble.not-my-message .replied-to-message-content{
+    border-left: 4px solid #fff;
 }
 
-.message-reply-container.not-me-replying .reply{
-    align-self: flex-start;
-    border-left: 4px solid white ;
+
+.message-bubble.my-message .replied-to-message-content{
+    border-right: 4px solid #fff;
 }
+
+
+.message-bubble .reply-container .message-content{
+    margin-top: 5px;
+}
+
+
+.message-bubble.my-message .reply-container .message-content{
+    border-radius: 16px 0 16px 16px;
+    margin-right: 4px;
+}
+
+
+.message-bubble.not-my-message .reply-container .message-content{
+    border-radius: 0 16px 16px 16px;
+    margin-left: 4px;
+}
+
+
+.content{
+    float: left;
+    margin-left: 0;
+    word-break: break-word;
+    float: right;
+} 
+
 
 .time{
     align-self:flex-end;
@@ -68,11 +124,4 @@
     color: rgba(255, 255, 255, 0.6);
     font-size: 10px;
     float: right;
-}
-
-.content{
-    /* float: left; */
-    margin-left: 0;
-    word-break: break-word;
-    /* float: right; */
 }

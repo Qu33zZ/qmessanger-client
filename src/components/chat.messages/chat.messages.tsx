@@ -21,6 +21,7 @@ const ChatMessages:React.FC<IChatMessagesProps> = observer(({activeChat}) => {
 	const [menuState, setMenuState] = useState<IMessageMenuState>({xPos:0, yPos:0, message:null});
 	const [loading, setLoading] = useState<boolean>(true);
 	const messagesEl = useRef<HTMLDivElement>(null);
+	const messages = Array.from(activeChat.messages.values());
 
 	//scroll on open or on new message
 	useEffect(() => {
@@ -55,7 +56,7 @@ const ChatMessages:React.FC<IChatMessagesProps> = observer(({activeChat}) => {
 			:
 				<div ref={messagesEl} className={`chat-messages ${menuState.message ? "scroll-lock" : "custom-scroll"}`}>
 				{
-					Array.from(activeChat.messages.values()).map(message => <Message message={message} key={message.id} setMenuState={setMenuState}/>)
+					messages.map((message, i) => <Message prevMessage={messages[i-1]} message={message} key={message.id} setMenuState={setMenuState}/>)
 				}
 				{
 					menuState.message && <MessageMenu
