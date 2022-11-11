@@ -5,7 +5,9 @@ import { CONFIG } from "../config";
 
 export const $authorizedApi = axios.create({
 	baseURL:CONFIG.api.server_url + CONFIG.api.rest_base_endpoint,
-	withCredentials:true
+	withCredentials:true, 
+	
+
 });
 
 $authorizedApi.interceptors.request.use((reqConfig) =>{

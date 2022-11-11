@@ -1,16 +1,15 @@
 .message, .my-message{
     display: flex;
     align-items: center;
-    flex-direction: column;
+    align-items: flex-start;
+    flex-direction: row;
 
     width: fit-content;
     max-width: 45%;
 
-    padding: 15px;
+    padding: 5px 10px 5px 10px;
 
     margin-top: 10px;
-
-    word-break: break-word;
 }
 
 .message{
@@ -46,7 +45,7 @@
 
     padding: 15px;
 
-    word-break: break-word;
+
 
     background: #152033;
     border-radius: 4px;
@@ -60,4 +59,20 @@
 .message-reply-container.not-me-replying .reply{
     align-self: flex-start;
     border-left: 4px solid white ;
+}
+
+.time{
+    align-self:flex-end;
+    justify-self: end;
+    margin-left: 5px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10px;
+    float: right;
+}
+
+.content{
+    /* float: left; */
+    margin-left: 0;
+    word-break: break-word;
+    /* float: right; */
 }

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState, KeyboardEvent } from "react";
+import React, { ChangeEvent, useRef, useState, KeyboardEvent, useEffect } from "react";
 import sprite from "../../assets/spite.svg";
 import "./styles.message.input.css";
 import { IChat } from "../../interfaces/IChat";
@@ -14,6 +14,11 @@ const MessageInput:React.FC<IMessageInputProps> = observer(({chat}) => {
 	const [messageContent, setMessageContent] = useState<string>("");
 	const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
+	useEffect(() =>{
+		if(messageInputRef.current){
+			messageInputRef.current.style.height = `${messageInputRef.current.scrollHeight}px`;
+		}
+	})
 	const resizeInput = (e:ChangeEvent<HTMLTextAreaElement>)=>{
 		setMessageContent(e.currentTarget.value);
 
