@@ -10,14 +10,14 @@ import { observable, ObservableMap } from "mobx";
 
 export class Chat implements IChat{
 	id:string;
-	members:Map<string, IUser>;
+	members:ObservableMap<string, IUser>;
 	messages:ObservableMap<string, Message>;
 	selectedMessageForReply:Message | null;
 	createdAt:Date;
 
 	constructor(chat:IChatFromAPI) {
 		this.id = chat.id;
-		this.members=new Map<string, IUser>(chat.members.map(member => [member.id, member]));
+		this.members=observable.map<string, IUser>(chat.members.map(member => [member.id, member]));
 		this.messages=observable.map<string, Message>(chat.messages.map(message => [message.id, new Message(message)]));
 		this.createdAt=chat.createdAt;
 		this.selectedMessageForReply = null;

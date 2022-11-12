@@ -45,10 +45,37 @@ class SocketClient{
 		this.socket.on("messageDelete", this.handleMessageDelete);
 		this.socket.on("chatCreate", this.handleNewChat);
 		this.socket.on("disconnect", this.handleDisconnect);
+		this.socket.on("userOnline", this.userGoToOnline);
+		this.socket.on("userOffline", this.userGoToOffline)
 	};
 
 	handleDisconnect(){
 		toast("Disconnected from the web server", {type:"warning", position:"top-center"});
+	}
+
+	async userGoToOnline(userId:string){
+		console.log(`Now ${userId} is offline!`);
+		for(const chat of ChatsStore.chats.values()){
+			const member = Array.from(chat.members.values()).find(mem => mem.id === userId);
+			if(member){
+				runInAction(() =>{
+					member.lastOnlineAt = "online";
+				})
+			}
+			
+		}
+	}
+
+	async userGoToOffline({userId, lastOnlineAt}:{userId:string, lastOnlineAt:Date}){
+		for(const chat of ChatsStore.chats.values()){
+			const member = Array.from(chat.members.values()).find(mem => mem.id === userId);
+			if(member){
+				runInAction(() =>{
+					member.lastOnlineAt = lastOnlineAt;
+				})
+			}
+			
+		}
 	}
 
 	async handleNewMessage(message:IMessage){

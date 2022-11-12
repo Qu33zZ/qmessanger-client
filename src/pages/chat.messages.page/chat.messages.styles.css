@@ -16,6 +16,19 @@
     margin-top: 81px;
 }
 
+
+@media screen and (max-width:768px){
+    .chat-messages-container{
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .chat-messages-page .chats-list-block{
+        display: none;
+    }
+}
+
+
 @media screen and (max-width:585px) {
     .chat-messages-container{
         margin-left: 0;

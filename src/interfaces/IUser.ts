@@ -5,5 +5,6 @@ export interface IUser{
 	name:string;
 	surname?:string;
 	avatar?:string;
-	verified:boolean
+	verified:boolean;
+	lastOnlineAt:Date | "online";
 }

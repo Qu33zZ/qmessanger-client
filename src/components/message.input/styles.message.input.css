@@ -1,6 +1,6 @@
 .message-input-area{
     width: calc(100vw - 23vw);
-    height: 65px;
+    /* height: 65px; */
     min-height: 65px;
     max-height: 40%;
 

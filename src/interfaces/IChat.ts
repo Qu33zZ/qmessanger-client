@@ -5,7 +5,7 @@ import { ObservableMap } from "mobx";
 
 export interface IChat{
 	id:string;
-	members:Map<string, IUser>;
+	members:ObservableMap<string, IUser>;
 	messages:ObservableMap<string, Message>;
 	createdAt:Date;
 	selectedMessageForReply:Message | null;
