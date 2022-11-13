@@ -17,10 +17,10 @@ const App = () => {
 		authorizeUsingAccessToken().finally(
 			() => {
 				setLoading(false);
-				if(UserStore.user) new SocketClient();
 			}
 		);
 	}, [])
+	
 	return (
 		loading
 			?   <Loader/>
